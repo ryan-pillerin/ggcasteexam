@@ -6,6 +6,8 @@ const encryption = require('./models/encryption/aes256')
 // Routes
 const managedbRoute = require('./routes/database/managedb')
 const dashboardRoute = require('./routes/dashboard')
+const loginRoute = require('./routes/login')
+const registerRoute = require('./routes/registration')
 
 // Unit Test
 const mysqlDB = require('./models/database/mysqldb')
@@ -23,6 +25,8 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/managedb', managedbRoute)
 app.use('/dashboard', dashboardRoute)
+app.use('/login', loginRoute)
+app.use('/registration', registerRoute)
 
 app.listen(3000, () => {
     console.log("----------------------------------------------")
