@@ -10,13 +10,14 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-sm-3" style="border-right: 1px solid #CCC">
+                    
                     <div class="text-center">
-                        <img src="https://picsum.photos/200/300?random=1" class="rounded-circle" style="width: 6rem;height: 6rem;" alt="..." >
+                        <img id="profilepic" src="https://picsum.photos/200/300?random=1" class="rounded-circle" style="width: 6rem;height: 6rem;" alt="..." >
                     </div>
                     <div class="input-group mb-3 mt-3">
-                        
                         <input type="file" class="form-control btn-sm" id="inputGroupFile01">
-                      </div>       
+                      </div>   
+                 <img src="/img/LOGO.png" class="img-fluid w-60 mt-5"  alt="..."> 
                 </div>
                 <div class="col-sm-9">
                     <form class="row g-3">
@@ -63,70 +64,27 @@
                         <div class="row mt-3">
                             <div class="col-md-4">
                                 <label for="cmbprovince" class="form-label"style=padding-top:10px;>Province</label>
-                                <select class="form-select" id="cmbprovince" aria-label="Province">
-                                    <option value="pro" selected>Select Province...</option>
+                                <select class="form-select" id="cmbprovince" aria-label="Province" onchange="changeMunicipality()">
+                                    <option value="pro" selected> Select Province...</option>
                                     <option value="davor">Davao Oriental</option>
                                     <option value="davnor">Davao del Norte</option>
                                     <option value="davocc">Davao Occidental</option>
                                     <option value="davdeoro">Davao de Oro</option>
                                     <option value="davsur">Davao del Sur</option>
+                                    <option value="others">Outside Region XI </option>
                                 </select>
                             </div>
                             <div class="col-md-4">
                                 <label for="cmbmunicipality" class="form-label"style=padding-top:10px;>Municipality</label>
-                                <select class="form-select" id="cmbmunicipality" aria-label="Municipality">
+                                <select class="form-select" id="cmbmunicipality" aria-label="Municipality" onchange="changeBarangay()">
                                     <option value="mun" selected>Select Municipality...</option>
-                                    <option value="gov">Governor Generoso</option>
-                                    <option value="san">San Isidro</option>
-                                    <option value="mat">Mati</option>
-                                    <option value="lup">Lupon</option>
-                                    <option value="ban">Banaybanay</option>
-                                    <option value="tar">Tarragona</option>
-                                    <option value="bag">Bagangga</option>
-                                    <option value="Manay">Manay</option>
-                                    <option value="cat">Cateel</option>
-                                    <option value="bos">Boston</option>
-                                    <option value="pan">Pantukan</option>
-                                    <option value="mab">Mabini</option>
-                                    <option value="mac">Maco</option>
-                                    <option value="tagum">Tagum</option>
-                                    <option value="pana">Panabo</option>
-                                    <option value="dav">Davao City</option>
-                                    <option value="car">Carmen</option>
-                                    <option value="mon">Monkayo</option>
-                                    <option value="mont">Montevista</option>
-                                    <option value="com">Compostela</option>
-                                    <option value="kap">Kapalong</option>
-                                    <option value="sto">Sto Tomas</option>
-                                    <option value="car">Carmen</option>
                                 </select>
                             </div>
                             <div class="col-md-4">
                                 <label for="cmbbarangay" class="form-label"style=padding-top:10px;>Barangay</label>
-                                <select class="form-select" id="cmbbarangay" aria-label="Barangay">
+                                <select class="form-select" id="cmbbarangay" aria-label="Barangay" onchange="">
                                     <option value="bar" selected>Select Barangay...</option>
-                                    <option value="ani">Anitap</option>
-                                    <option value="chi">Chicote</option>
-                                    <option value="cri">Crispin del Cruz</option>
-                                    <option value="lav">Lavigan</option>
-                                    <option value="luz">Luzon</option>
-                                    <option value="mag">Magdug</option>
-                                    <option value="man">Manuel Roxas</option>
-                                    <option value="nan">Nangan</option>
-                                    <option value="pob">Poblacion</option>
-                                    <option value="pun">Pundaguitan</option>
-                                    <option value="ser">Sergio Osmeña</option>
-                                    <option value="sur">Surop</option>
-                                    <option value="tag">Tagabebe</option>
-                                    <option value="tam">Tamban</option>
-                                    <option value="tan">Tandang Sora</option>
-                                    <option value="tib">Tibanban</option>
-                                    <option value="tibl">Tiblawan</option>
-                                    <option value="upp">Upper Tibanban</option>
-                                    <option value="lau">La Union</option>
-                                    <option value="cam">Cambaleon</option>
-                                    <option value="mani">Mnikling</option>
-                                    <option value="lan">Lanca</option>
+                                    
 
                                 </select>
                             </div>
@@ -161,3 +119,381 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+
+    const changeMunicipality = () => {
+        let provinceCode = $('#cmbprovince').val();
+        let municipalityData = null
+
+        switch ( provinceCode ) {
+            case 'davor':
+                municipalityData = [
+                    { code: 'default', name: 'Select Municipality...' },
+                    { code: 'bag', name: 'Bagangga' },
+                    { code: 'ban', name: 'Banaybanay' },
+                    { code: 'bos', name: 'Boston' },
+                    { code: 'car', name: 'Caraga' },
+                    { code: 'cat', name: 'Cateel' },
+                    { code: 'govgen', name: 'Governor Generoso' },
+                    { code: 'lupon', name: 'Lupon' },
+                    { code: 'man', name: 'Manay' },
+                    { code: 'mat', name: 'Mati City' },
+                    { code: 'san', name: 'San Isidro' },
+                    { code: 'tar', name: 'Tarragona' },
+            ]
+                break
+            case 'davnor':
+       municipalityData = [
+                    { code: 'default', name: 'Select Municipality...' },
+                    { code: 'asu', name: 'Asuncion' },
+                    { code: 'duj', name: 'Braulio E. Dujali' },
+                    { code: 'carm', name: 'Carmen' },
+                    { code: 'kap', name: 'Kapalong' },
+                    { code: 'new', name: 'New Corella' },
+                    { code: 'panabo', name: 'Panabo City' },
+                    { code: 'sam', name: 'Samal' },
+                    { code: 'sani', name: 'San Isidro' },
+                    { code: 'sto', name: 'Sto. Tomas' },
+                    { code: 'tagum', name: 'Tagum City' },
+                    { code: 'tala', name: 'Talaingod' },
+                ]
+                break
+                case 'davocc':
+       municipalityData = [
+                    { code: 'default', name: 'Select Municipality...' },
+                    { code: 'don', name: 'Don Marcelino' },
+                    { code: 'jose', name: 'Jose Abad Santos' },
+                    { code: 'mali', name: 'Malita' },
+                    { code: 'sta', name: 'Sta. Maria' },
+                    { code: 'sar', name: 'Sarangani' },
+                ]
+                break
+                case 'davsur':
+       municipalityData = [
+                    { code: 'default', name: 'Select Municipality...' },
+                    { code: 'bans', name: 'Bansalan' },
+                    { code: 'dav', name: 'Davao City' },
+                    { code: 'dig', name: 'Digos' },
+                    { code: 'hag', name: 'Hagonoy' },
+                    { code: 'kib', name: 'Kiblawan' },
+                    { code: 'mags', name: 'Magsaysay' },
+                    { code: 'mala', name: 'Malalag' },
+                    { code: 'mata', name: 'Matanao' },
+                    { code: 'pada', name: 'Padada' },
+                    { code: 'stac', name: 'Sta. Cruz' },
+                    { code: 'sulop', name: 'Sulop' },
+                ]
+                break
+                case 'davdeoro':
+       municipalityData = [
+                    { code: 'default', name: 'Select Municipality...' },
+                    { code: 'comp', name: 'Compostela' },
+                    { code: 'laak', name: 'Laak' },
+                    { code: 'mabi', name: 'Mabini' },
+                    { code: 'maco', name: 'Maco' },
+                    { code: 'mara', name: 'Maragusan' },
+                    { code: 'mawab', name: 'Mawab' },
+                    { code: 'monk', name: 'Monkayo' },
+                    { code: 'mont', name: 'Montevista' },
+                    { code: 'nab', name: 'Nabunturan' },
+                    { code: 'new', name: 'New Bataan' },
+                    { code: 'pantu', name: 'Pantukan' },
+                ]
+                break
+                case 'others':
+       municipalityData = [
+                    { code: 'default', name: '' },
+                ]
+                break
+                
+        }
+
+        let optionMunicipality = null
+        municipalityData.forEach( function(value, key) {
+            if ( key == 0 ) {
+                optionMunicipality += "<option value='" + value.code + "' selected>" + value.name + "</option>"    
+            } else {
+                optionMunicipality += "<option value='" + value.code + "'>" + value.name + "</option>"
+            }
+        })
+        $('#cmbmunicipality').html(optionMunicipality)
+    }
+
+        
+</script>
+
+<script type="text/javascript">
+
+    const changeBarangay = () => {
+        let municipalityCode = $('#cmbmunicipality').val();
+        let barangayData = null
+
+        switch ( municipalityCode ) {
+            
+            case 'govgen':
+                barangayData = [
+                    { code: 'default', name: 'Select Barangay...' },
+                    { code: 'anit', name: 'Anitap' },
+                    { code: 'crisp', name: 'Crispin dela Cruz' },
+                    { code: 'don', name: 'Don Aurelio Chicote' },
+                    { code: 'lav', name: 'Lavigan' },
+                    { code: 'luz', name: 'Luzon' },
+                    { code: 'mag', name: 'Magdug' },
+                    { code: 'manu', name: 'Manuel Roxas' },
+                    { code: 'mons', name: 'Monserrat' },
+                    { code: 'nang', name: 'Nangan' },
+                    { code: 'oreg', name: 'Oregon' },
+                    { code: 'pobl', name: 'Poblacion' },
+                    { code: 'pun', name: 'Pundaguitan' },
+                    { code: 'serg', name: 'Sergio Osmeña' },
+                    { code: 'sur', name: 'Surop' },
+                    { code: 'tag', name: 'Tagabebe' },
+                    { code: 'tam', name: 'Tamban' },
+                    { code: 'tand', name: 'Tandang Sora' },
+                    { code: 'tiba', name: 'Tibanban' },
+                    { code: 'tibl', name: 'Tiblawan' },
+                    { code: 'upp', name: 'Upper Tibanbann' },
+                ]
+            break
+
+            case 'san':
+                barangayData = [
+                    { code: 'default', name: 'Select Barangay...' },
+                    { code: 'baon', name: 'Baon' },
+                    { code: 'bita', name: 'Bitaogan' },
+                    { code: 'camb', name: 'Cambaleon' },
+                    { code: 'dugm', name: 'Dugmanon' },
+                    { code: 'iba', name: 'Iba' },
+                    { code: 'laun', name: 'La Union' },
+                    { code: 'lapu', name: 'Lapu Lapu' },
+                    { code: 'maag', name: 'Maag' },
+                    { code: 'manik', name: 'Manikling' },
+                    { code: 'mapu', name: 'Maputi' },
+                    { code: 'bato', name: 'Batobato' },
+                    { code: 'sanm', name: 'San Miguel' },
+                    { code: 'sanr', name: 'San Roque' },
+                    { code: 'sant', name: 'Santo Rosario' },
+                    { code: 'sudl', name: 'Sudlon' },
+                    { code: 'tali', name: 'Talisay' },
+                   
+                ]
+                break
+
+                case 'mat':
+                barangayData = [
+                    { code: 'default', name: 'Select Barangay...' },
+                    { code: 'badas', name: 'Badas' },
+                    { code: 'bobon', name: 'Bobon' },
+                    { code: 'buso', name: 'Buso' },
+                    { code: 'cabu', name: 'Cabuaya' },
+                    { code: 'central', name: 'Central' },
+                    { code: 'culian', name: 'Culian' },
+                    { code: 'dahican', name: 'Dahican' },
+                    { code: 'danao', name: 'Danao' },
+                    { code: 'dawan', name: 'Dawan' },
+                    { code: 'done', name: 'Don Enrique Lopez' },
+                    { code: 'donm', name: 'Don Martin Marundan' },
+                    { code: 'dons', name: 'Don Salvador Lopez Sr.' },
+                    { code: 'lang', name: 'Langka' },
+                    { code: 'lawi', name: 'Lawigan' },
+                    { code: 'libu', name: 'Libudon' },
+                    { code: 'luban', name: 'Luban' },
+                    { code: 'macam', name: 'Macambol' },
+                    { code: 'mamali', name: 'Mamali' },
+                    { code: 'matiao', name: 'Matiao' },
+                    { code: 'mayo', name: 'Mayo' },
+                    { code: 'sainz', name: 'Sainz' },
+                    { code: 'sang', name: 'Sanghay' },
+                    { code: 'taga', name: 'Tagabakid' },
+                    { code: 'tagbi', name: 'Tagbinonga' },
+                    { code: 'tagui', name: 'Taguibo' },
+                    { code: 'tamisan', name: 'Tamisan' },
+                ]
+            break
+
+            case 'lupon':
+                barangayData = [
+                    { code: 'default', name: 'Select Barangay...' },
+                    { code: 'bagum', name: 'Bagumbayan' },
+                    { code: 'cabad', name: 'Cabadiangan' },
+                    { code: 'calap', name: 'Calapagan' },
+                    { code: 'cocor', name: 'Cocornon' },
+                    { code: 'corpo', name: 'Corporacion' },
+                    { code: 'donmar', name: 'Don Marcos' },
+                    { code: 'ilang', name: 'Ilangay' },
+                    { code: 'lanka', name: 'Langka' },
+                    { code: 'lantaw', name: 'Lantawan' },
+                    { code: 'limba', name: 'Limbahan' },
+                    { code: 'macang', name: 'Macangao' },
+                    { code: 'magsay', name: 'Magsaysay.' },
+                    { code: 'mahay', name: 'Mahayahay' },
+                    { code: 'marag', name: 'Maragatas' },
+                    { code: 'maray', name: 'Marayag' },
+                    { code: 'newv', name: 'New Visayas' },
+                    { code: 'macam', name: 'Macambol' },
+                    { code: 'pobla', name: 'Poblacion' },
+                    { code: 'sanisid', name: 'San Isidro' },
+                    { code: 'sanjo', name: 'San Jose' },
+                    { code: 'tagbo', name: 'Tagboa' },
+                    { code: 'tagug', name: 'Tagugpo' },
+                    
+                ]
+            break
+            case 'ban':
+                barangayData = [
+                    { code: 'default', name: 'Select Barangay...' },
+                    { code: 'cabang', name: 'Cabangcalan' },
+                    { code: 'cagang', name: 'Caganganan' },
+                    { code: 'calubi', name: 'Calubihan' },
+                    { code: 'caus', name: 'Causwagan' },
+                    { code: 'punta', name: 'Punta Linao' },
+                    { code: 'mahayag', name: 'Mahayag' },
+                    { code: 'maputi', name: 'Maputi' },
+                    { code: 'panik', name: 'Panikian' },
+                    { code: 'pinta', name: 'Pintatagan' },
+                    { code: 'piso', name: 'Piso' },
+                    { code: 'pob', name: 'Poblacion' },
+                    { code: 'sanv', name: 'San Vicente.' },
+                    { code: 'rang', name: 'Rang-ay' },
+                ]
+            break
+
+            case 'tar':
+                barangayData = [
+                    { code: 'default', name: 'Select Barangay...' },
+                    { code: 'cabag', name: 'Cabagayan' },
+                    { code: 'cent', name: 'Central' },
+                    { code: 'dadong', name: 'Dadong' },
+                    { code: 'jovelar', name: 'Jovellar' },
+                    { code: 'limot', name: 'Limot' },
+                    { code: 'lucatan', name: 'Lucatan' },
+                    { code: 'maganda', name: 'Maganda' },
+                    { code: 'ompao', name: 'Ompao' },
+                    { code: 'tomoang', name: 'Tomoang' },
+                    { code: 'tubaon', name: 'Tubaon' },
+
+                ]
+            break
+
+            case 'bag':
+                barangayData = [
+                    { code: 'default', name: 'Select Barangay...' },
+                    { code: 'baculin', name: 'Baculin' },
+                    { code: 'banao', name: 'Ban-ao' },
+                    { code: 'bataw', name: 'Batawan' },
+                    { code: 'bati', name: 'Batiano' },
+                    { code: 'binon', name: 'Binondo' },
+                    { code: 'bobo', name: 'Bobonao' },
+                    { code: 'campawan', name: 'Campawan' },
+                    { code: 'central', name: 'Central' },
+                    { code: 'dapnan', name: 'Dapnan' },
+                    { code: 'kinab', name: 'Kinablangan' },
+                    { code: 'lamba', name: 'Lambajon' },
+                    { code: 'lucod', name: 'Lucod' },
+                    { code: 'mahan', name: 'Mahan-ub' },
+                    { code: 'mikit', name: 'Mikit' },
+                    { code: 'sani', name: 'San Isidro' },
+                    { code: 'sanv', name: 'San Victor' },
+                    { code: 'saoq', name: 'Saoquigue' },
+
+                ]
+            break
+
+            case 'bos':
+                barangayData = [
+                    { code: 'default', name: 'Select Barangay...' },
+                    { code: 'cabas', name: 'Cabasagan' },
+                    { code: 'caati', name: 'Caatihan' },
+                    { code: 'cawa', name: 'Cawayanan' },
+                    { code: 'pob', name: 'Poblacionr' },
+                    { code: 'sanj', name: 'San Jose' },
+                    { code: 'siba', name: 'Sibahay' },
+                    { code: 'carm', name: 'Carmen' },
+                    { code: 'simul', name: 'Simulao' },
+
+                ]
+            break
+
+            case 'car':
+                barangayData = [
+                    { code: 'default', name: 'Select Barangay...' },
+                    { code: 'alvar', name: 'Alvar' },
+                    { code: 'canin', name: 'Caningag' },
+                    { code: 'donleon', name: 'Don Leon Balante' },
+                    { code: 'lami', name: 'Lamiawan' },
+                    { code: 'manor', name: 'Manorigao' },
+                    { code: 'merced', name: 'Mercedes' },
+                    { code: 'palma', name: 'Palma Gil' },
+                    { code: 'pichon', name: 'Pichon' },
+                    { code: 'pob', name: 'Poblacion' },
+                    { code: 'sanan', name: 'San Antonio' },
+                    { code: 'sanj', name: 'San Jose' },
+                    { code: 'sanl', name: 'San Luis' },
+                    { code: 'sanm', name: 'San Miguel' },
+                    { code: 'sanp', name: 'San Pedro' },
+                    { code: 'santa', name: 'Santa Fe' },
+                    { code: 'santi', name: 'Santiago' },
+                    { code: 'pm', name: 'P.M. Sobrecary' },
+                ]
+            break
+
+            case 'cat':
+                barangayData = [
+                    { code: 'default', name: 'Select Barangay...' },
+                    { code: 'abijod', name: 'Abijod' },
+                    { code: 'aleg', name: 'Alegria' },
+                    { code: 'ali', name: 'Aliwagwag' },
+                    { code: 'ara', name: 'Aragon' },
+                    { code: 'bay', name: 'Baybay' },
+                    { code: 'mag', name: 'Maglahus' },
+                    { code: 'main', name: 'Mainit' },
+                    { code: 'mali', name: 'Malibago' },
+                    { code: 'pob', name: 'Poblacion' },
+                    { code: 'sanal', name: 'San Alfonso' },
+                    { code: 'sanan', name: 'San Antonio' },
+                    { code: 'sanm', name: 'San Miguel' },
+                    { code: 'sanr', name: 'San Rafael.' },
+                    { code: 'sanv', name: 'San Vicente' },
+                    { code: 'santaf', name: 'Santa Felomena' },
+                    { code: 'taytay', name: 'Taytayan' },
+                ]
+            break 
+
+            case 'man':
+                barangayData = [
+                    { code: 'default', name: 'Select Barangay...' },
+                    { code: 'capas', name: 'Capasnan' },
+                    { code: 'cayaw', name: 'Cayawan' },
+                    { code: 'cent', name: 'Central' },
+                    { code: 'conc', name: 'Concepcion' },
+                    { code: 'delp', name: 'Del Pilar' },
+                    { code: 'guza', name: 'Guza' },
+                    { code: 'holy', name: 'Holy Cruz' },
+                    { code: 'mabini', name: 'Mabini' },
+                    { code: 'manre', name: 'Manreza' },
+                    { code: 'old', name: 'Old Macopa' },
+                    { code: 'rizal', name: 'Rizal' },
+                    { code: 'sanf', name: 'San Fermin' },
+                    { code: 'sanig', name: 'San Ignacio' },
+                    { code: 'sani', name: 'San Isidro' },
+                    { code: 'taoc', name: 'Taocanga' },
+                    { code: 'zara', name: 'Zaragosa' },
+                    { code: 'lambog', name: 'Lambog' },
+                ]
+            break
+        }
+
+        let optionBarangay = null
+        barangayData.forEach( function(value, key) {
+            if ( key == 0 ) {
+                optionBarangay += "<option value='" + value.code + "' selected>" + value.name + "</option>"    
+            } else {
+                optionBarangay += "<option value='" + value.code + "'>" + value.name + "</option>"
+            }
+        })
+        $('#cmbbarangay').html(optionBarangay)
+    }
+
+        
+</script>
