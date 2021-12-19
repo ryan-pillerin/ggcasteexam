@@ -11,6 +11,27 @@
 
 <!-- Content -->
 <div class="container-fluid">
+    
+    <div class="row">
+        <div class="col-md-12 p-3">
+            <div class="card">
+                <div class="card-header bg-success bg-gradient text-white">
+                    <span class="material-icons d-inline-block align-text-top mx-2">people</span>
+                    List of Accouts
+                </div>
+                <div class="card-body">
+                    
+                </div>
+                <div class="row-fluid p-3">
+                    <div class="col-md-12 text-end">
+                        <button type="button" class="btn btn-success px-4" data-bs-toggle="modal" data-bs-target="#addaccountmodal">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="row">
         <div class="col-md-12 p-3">
             <div class="card">
@@ -31,7 +52,7 @@
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="facilitator-data">
                                 <% for( var i = 0; i < data.length; i++ ) { %>
                                 <tr>
                                     <td><%= i + 1 %></td>
@@ -56,6 +77,7 @@
             </div>
         </div>
     </div>
+
 </div>
 
 <!-- Modal -->
@@ -80,29 +102,38 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save</button>
+          <button type="button" class="btn btn-primary" onclick="addFacilitatorData()">Save</button>
         </div>
       </div>
     </div>
-  </div>
+</div>
 
-<script type="text/javascript">
+<div class="modal fade" id="addaccountmodal" tabindex="-1" aria-labelledby="addaccountmodalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addaccountmodalLabel">Add New Account</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="mb-3">
+                <select class="form-select" id="facilitator-account" aria-label="List of Facilitator Account">
+                    <option selected>Select Facilitator</option>
+                </select>
+            </div>
+            <div class="mb-3">                
+                <input type="text" class="form-control" id="txtusername" placeholder="Enter your username">
+            </div>
+            <div class="mb-3">                
+                <input type="password" class="form-control" id="txtpassword" placeholder="Enter your paassword">
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" onclick="">Save</button>
+        </div>
+      </div>
+    </div>
+</div>
 
-    const addFacilitatorData = () => {
-        let firstname = $('#txtfirstname').val()
-        let lastname = $('#txtlastname').val()
-
-        axios({
-            method: 'POST',
-            url: '',
-            data: {
-                firstname: firstname,
-                lastname: lastname
-            }
-        }).then( (result) => {
-            
-        })
-
-    }
-
-</script>
+<script type="text/javascript" src="/js/events/dashboard.js"></script> 

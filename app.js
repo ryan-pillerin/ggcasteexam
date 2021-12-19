@@ -23,11 +23,12 @@ app.use('/img', express.static(__dirname + 'public/img'))
 app.use(expressLayouts)
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 app.use('/managedb', managedbRoute)
 app.use('/exam', examRoute)
 app.use('/dashboard', dashboardRoute)
-app.use('/login', loginRoute)
+app.use('/', loginRoute)
 app.use('/registration', registerRoute)
 
 
