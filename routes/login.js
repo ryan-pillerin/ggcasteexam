@@ -6,7 +6,7 @@ const MySQLDB = require('./../models/database/mysqldb')
 const {v1: guid} = require('uuid')
 const passport = require('passport')
 
-routes.get('/', (req, res) => {
+routes.get('/', checkNotAuthenticated, (req, res) => {
     res.render('login', {title: 'GGCAST Electronic Entrance Exam - Login'})
 })
 
@@ -44,5 +44,13 @@ routes.post('/registeraccount', async(req, res) => {
         res.json({message: 'error'})
     }
 })
+
+function checkNotAuthenticated(req, res, next) {
+    if ( req.isAuthenticated() ) {
+        res.redirect('/dashboard')
+    } else {
+       next()
+    }
+}
 
 module.exports = routes

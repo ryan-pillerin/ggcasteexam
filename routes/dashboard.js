@@ -8,8 +8,7 @@ const MysqlDB = require('./../models/database/mysqldb')
 
 
 routes.get('/', checkAuthenticated, (req, res) => {
-    // Get All facilitator account
-    console.log(req.user)
+    // Get All facilitator account   
     MysqlDB.sqlCommand("SELECT * FROM facilitator ORDER BY updateddate DESC").then( (result) => {
         res.render('dashboard', {title: 'GGCAST EXAM - Dashboard', data: result, user: req.user})
     })
@@ -57,10 +56,11 @@ routes.post('/getallfacilitator', (req, res) => {
 
 function checkAuthenticated(req, res, next) {
     if ( req.isAuthenticated() ) {
+        // Authorization
         return next()
+    } else {
+        res.redirect('/')
     }
-
-    res.redirect('/')
 }
 
 module.exports = routes

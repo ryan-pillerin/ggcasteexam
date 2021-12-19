@@ -20,13 +20,13 @@
                  <img src="/img/LOGO.png" class="img-fluid w-60 mt-5"  alt="..."> 
                 </div>
                 <div class="col-sm-9">
-                    <form class="row g-3">
+                    <form class="row g-3" action="/registration/registerstudent" method="post">
                         <!-- ROw 1 -->
                         <div class="row mt-3">
                             <div class="col-md-8">&nbsp;</div>
                             <div class="col-md-4">
                                 <label for="cmbcourse" class="form-label">Desired Course</label>
-                                <select class="form-select" id="cmbcourse" aria-label="Desired Course">
+                                <select class="form-select" id="cmbcourse" name="desiredcourse" aria-label="Desired Course">
                                     <option selected>BEED</option>
                                     <option value="1">BPA</option>
                                     <option value="2">BSED - English</option>
@@ -44,11 +44,11 @@
                         <div class="row mt-3">
                             <div class="col-md-4">                 
                                 <label for="lasttname" class="form-label"style=padding-top:10px;>Last Name</label>
-                                <input type="text" class="form-control" id="lastname">
+                                <input type="text" class="form-control" id="lastname" name="lastname">
                             </div>
                             <div class="col-md-4" style="padding-top: 10px;">
                                 <label for="middlename" class="form-label">Middle Name</label>
-                                <input type="text" class="form-control" id="middlename">
+                                <input type="text" class="form-control" id="middlename" name="middlename">
                             </div>
                             <div class="col-md-4">
                                   <label for="firstname" class="form-label" style="padding-top: 10px;">First Name</label>
