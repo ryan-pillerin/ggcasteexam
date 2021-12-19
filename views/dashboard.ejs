@@ -88,10 +88,21 @@
 
 <script type="text/javascript">
 
-    $(document).ready(function() {
-        $('.delete-record').on('click', function(e) {
-            alert($(this).attr('data-id'))
+    const addFacilitatorData = () => {
+        let firstname = $('#txtfirstname').val()
+        let lastname = $('#txtlastname').val()
+
+        axios({
+            method: 'POST',
+            url: '',
+            data: {
+                firstname: firstname,
+                lastname: lastname
+            }
+        }).then( (result) => {
+            
         })
-    })
+
+    }
 
 </script>
