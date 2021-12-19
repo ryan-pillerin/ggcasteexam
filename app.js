@@ -4,6 +4,7 @@ const expressLayouts = require('express-ejs-layouts')
 
 // Routes
 const managedbRoute = require('./routes/database/managedb')
+const examRoute = require('./routes/exam')
 
 const app = express()
 
@@ -17,6 +18,7 @@ app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/managedb', managedbRoute)
+app.use('/exam', examRoute)
 
 app.listen(3000, () => {
     console.log("Server is running...")
