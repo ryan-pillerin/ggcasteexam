@@ -5,13 +5,13 @@ const {v1: guid} = require('uuid')
 
 /* Custom Made Libraries */
 const MysqlDB = require('./../models/database/mysqldb')
-const req = require('express/lib/request')
 
 
-routes.get('/', (req, res) => {
+routes.get('/', checkAuthenticated, (req, res) => {
     // Get All facilitator account
+    console.log(req.user)
     MysqlDB.sqlCommand("SELECT * FROM facilitator ORDER BY updateddate DESC").then( (result) => {
-        res.render('dashboard', {title: 'GGCAST EXAM - Dashboard', data: result})
+        res.render('dashboard', {title: 'GGCAST EXAM - Dashboard', data: result, user: req.user})
     })
 })
 
@@ -54,5 +54,13 @@ routes.post('/getallfacilitator', (req, res) => {
         res.json({data: result})
     });
 })
+
+function checkAuthenticated(req, res, next) {
+    if ( req.isAuthenticated() ) {
+        return next()
+    }
+
+    res.redirect('/')
+}
 
 module.exports = routes

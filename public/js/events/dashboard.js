@@ -45,3 +45,7 @@ const getallfacilitator = () => {
         $('#exampleModal').modal('hide')
     })
 }
+
+const addaccount = () => {
+
+}

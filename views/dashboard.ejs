@@ -4,7 +4,7 @@
             <span class="material-icons d-inline-block align-text-top">
                 dashboard
             </span>
-            Dashboard
+            Dashboard - <%= user.username %>
         </a>
     </div>
 </nav>
@@ -108,6 +108,7 @@
     </div>
 </div>
 
+<!-- Modal Add Account -->
 <div class="modal fade" id="addaccountmodal" tabindex="-1" aria-labelledby="addaccountmodalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -119,6 +120,9 @@
             <div class="mb-3">
                 <select class="form-select" id="facilitator-account" aria-label="List of Facilitator Account">
                     <option selected>Select Facilitator</option>
+                    <% for( var i = 0; i < data.length; i++ ) { %>
+                        <option value="<%= data[i].id %>"><%= data[i].firstname + " " + data[i].lastname %></option>
+                    <% } %>
                 </select>
             </div>
             <div class="mb-3">                
