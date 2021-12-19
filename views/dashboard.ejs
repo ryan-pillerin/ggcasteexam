@@ -1,0 +1,97 @@
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <span class="material-icons d-inline-block align-text-top">
+                dashboard
+            </span>
+            Dashboard
+        </a>
+    </div>
+</nav>
+
+<!-- Content -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 p-3">
+            <div class="card">
+                <div class="card-header bg-success bg-gradient text-white">
+                    <span class="material-icons d-inline-block align-text-top mx-2">people</span>
+                    Facilicator Account
+                </div>
+                <div class="card-body">
+                  <div class="card-text">
+                        <!-- Return all list of facilitator account -->
+                        <table class="table table-success table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Created Date</th>
+                                    <th scope="col">Updated Date</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for( var i = 0; i < data.length; i++ ) { %>
+                                <tr>
+                                    <td><%= i + 1 %></td>
+                                    <td><%= data[i].firstname + ' ' + data[i].lastname %></td>
+                                    <td><%= data[i].createddate %></td>
+                                    <td><%= data[i].updateddate %></td>
+                                    <td class="text-center">
+                                        <input class="form-check-input selected-facilitator" type="checkbox">
+                                    </td>
+                                </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+                  </div>
+                  <div class="row-fluid">
+                      <div class="col-md-12 text-end">
+                          <button type="button" class="btn btn-success px-4" data-bs-toggle="modal" data-bs-target="#exampleModal">Add</button>
+                          <button type="button" class="btn btn-secondary px-3">Delete</button>
+                      </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add New Facilitator</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form class="row g-3">
+                <div class="col-md-6">
+                    <label for="txtlastname" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="txtlastname" placeholder="Enter your last name">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="txtfirstname" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="txtfirstname" placeholder="Enter your first name">
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        $('.delete-record').on('click', function(e) {
+            alert($(this).attr('data-id'))
+        })
+    })
+
+</script>
