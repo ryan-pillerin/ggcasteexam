@@ -1,9 +1,6 @@
 const express = require('express')
 const ejs = require('ejs')
 const expressLayouts = require('express-ejs-layouts')
-const encryption = require('./models/encryption/aes256')
-const {v1: guid} = require('uuid')
-const dateFormat = require('date-and-time')
 const passport = require('passport')
 const flash = require('express-flash')
 const session = require('express-session')
@@ -64,10 +61,19 @@ app.listen(3000, async() => {
     console.log(dateFormat.format(new Date(), 'YYYY/MM/DD HH:mm:ss'))
     */
     let promise = new Promise( (resolve, reject) => {
-        mysqlDB.sqlCommand("SELECT * FROM accounts").then( (result) => {
+        let sql =   "SELECT ggcastexam.facilitator.id, 'facilitator' as accounttype," +
+                    " firstname, lastname, ggcastexam.accounts.username, ggcastexam.accounts.password" +
+                    " FROM ggcastexam.facilitator" +
+                    " INNER JOIN ggcastexam.accounts ON ggcastexam.accounts.id = ggcastexam.facilitator.accountid" +
+                    " UNION" +
+                    " SELECT ggcastexam.registration.id, 'students' as accounttype," +
+                    " firstname, lastname, ggcastexam.accounts.username, ggcastexam.accounts.password" +
+                    " FROM ggcastexam.registration" +
+                    " INNER JOIN ggcastexam.accounts ON ggcastexam.accounts.id = ggcastexam.registration.accountid"
+        mysqlDB.sqlCommand(sql).then( (result) => {
             resolve(result)
         })
     })
 
-    users = await promise
+    users = await promise    
 })
