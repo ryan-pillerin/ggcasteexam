@@ -1,5 +1,5 @@
 const LocalStrategy = require('passport-local').Strategy
-const bcrypt = require('bcrypt')
+const encryption = require('./encryption/aes256')
 
 function initialize(passport, getUserByUsername, getUserById) {
     const authenticateUser = async (username, password, done) => {
@@ -9,7 +9,8 @@ function initialize(passport, getUserByUsername, getUserById) {
         }
 
         try {
-            if ( await bcrypt.compare(password, user.password) ) {
+
+            if ( encryption.decrypt(user.password) === password ) {
                 return done(null, user)
             } else {
                 return done(null, false, { message: 'Password Incorrect' })

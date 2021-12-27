@@ -29,9 +29,11 @@
     "express-session": "^1.17.2",
     "kothing-editor": "^0.1.4",
     "mysql": "^2.18.1",
+    "node-cron": "^3.0.0",
     "nodemon": "^2.0.15",
     "passport": "^0.5.2",
     "passport-local": "^1.0.0",
+    "popper.js": "^1.16.1",
     "uuid": "^8.3.2"
   }
 }

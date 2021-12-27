@@ -56,14 +56,9 @@ routes.post('/getallfacilitator', (req, res) => {
 
 function checkAuthenticated(req, res, next) {
     if ( req.isAuthenticated() ) {
-        // Authorization
-        if ( req.user.accounttype == 'students' ) {
-            res.redirect('/exam')
-        } else {
-            return next()
-        }
+        return next()
     } else {
-        res.redirect('/')
+        res.redirect('/login')
     }
 }
 
