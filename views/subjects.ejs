@@ -1,0 +1,157 @@
+<div class="container-fluid">
+    <div class="row mx-3 p-3" style="border-bottom: 1px solid #CCC">
+        <div class="col-sm-12 col-md-10">
+            <h3 class="text-uppercase">Setup Subjects</h3>
+            <p class="text-muted">
+                Setup Subjects is the procedure that allows the administrator to add, edit, and delete subjects that will be used in the creation of a curriculum. 
+                After a subject has been used in the curriculum, no user has the ability to edit or delete it. Aside from that, any inactive subjects are no longer permitted to be used in the creation of a curriculum. 
+                Additionally, any active subjects cannot be edited; they must first be set to inactive before being edited.
+            </p>
+        </div>
+        <div class="col-sm-12 col-md-2 text-end">
+            <a href="" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addsubjectsModal"> 
+                <span class="material-icons align-bottom">
+                add
+                </span>
+            </a>
+            <a href="" class="btn btn-danger"> 
+                <span class="material-icons align-bottom">
+                delete
+                </span>
+            </a>
+        </div>
+    </div>
+    <div class="row mx-3 mt-3">
+        <div class="col-sm-12 col-md-12">
+            <div class="table-responsive" style="overflow-x:auto;">
+                <table class="table" style="min-width: 800px;">
+                    <thead class="bg-primary text-white">
+                        <tr>
+                            <th style="width: 5%;">&nbsp;</th>
+                            <th style="width: 50%;">Subjects</th>
+                            <th style="width: 15%;" class="text-center">Units</th>
+                            <th style="width: 15%;" class="text-center">Status</th>
+                            <th style="width: 15%;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-content">
+                        <tr>
+                            <td class="text-center align-middle">
+                                <input type="checkbox" >
+                            </td>
+                            <td>
+                                <a class="btn" data-bs-toggle="collapse" href="#td-1" aria-expanded="false" aria-controls="td-1">
+                                    ARTS - Teaching Arts in the Elementary Grades
+                                </a>
+                                <div style="font-size: 0.8rem;" class="text-muted collapse" id="td-1">
+                                    This course deals with the educational foundations of Arts as these
+                                    apply to teaching and learning in the elementary grades. Various teaching
+                                    strategies and assessment appropriate for each area shall be given emphasis
+                                    in the course.
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div> Lec: 3 units</div> 
+                                <div> Lab: 0 unit</div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <span class="badge rounded-pill bg-success">Active</span>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center align-middle">
+                                <input type="checkbox" >
+                            </td>
+                            <td>
+                                <a href="#td-2" class="btn" data-bs-toggle="collapse" aria-expanded="false" aria-controls="td-2">
+                                    ARTS - Teaching Arts in the Elementary Grades
+                                </a>
+                                <div style="font-size: 0.8rem;" class="text-muted collapse" id="td-2">
+                                    This course deals with the educational foundations of Arts as these
+                                    apply to teaching and learning in the elementary grades. Various teaching
+                                    strategies and assessment appropriate for each area shall be given emphasis
+                                    in the course.
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div> Lec: 3 units</div> 
+                                <div> Lab: 0 unit</div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <span class="badge rounded-pill bg-warning">In-Active</span>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Forms -->
+<div class="modal fade" id="addsubjectsModal" tabindex="-1" aria-labelledby="addsubjectsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" id="addsubjectsModalLabel">Add Subject</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="coursenumber" placeholder="e.g. GE 1">
+                    <label for="coursenumber">Course No.</label>
+                    <span class="text-muted" style="font-size: 0.8rem;">
+                        e.g. GE 1, FIL 101, MATH 101, or EL 101
+                    </span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="coursetitle" placeholder="e.g. Understanding the Self">
+                    <label for="coursetitle">Course Title</label>
+                    <span class="text-muted" style="font-size: 0.8rem;">
+                        e.g. Understanding the Self, Introduction sa Pag-aaral ng Wika, or College and Advance Algebra
+                    </span>
+                </div>
+                <div class="form-floating mb-3">
+                    <textarea style="height: 200px;" class="form-control" id="coursedescription" placeholder="Course Description" rows="3"></textarea>
+                    <label for="coursedecription">Course Description</label>
+                    <span class="text-muted" style="font-size: 0.8rem;">
+                        The course description can be found under CHED Policies, Standards, and Guidelines per Program.
+                    </span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="unitlecture" placeholder="Number of Units" value="0">
+                    <label for="unitlecture">Lecture Units</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="unitlab" placeholder="Number of Units" value="0">
+                    <label for="unitlab">Laboratory Units</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <span class="material-icons align-bottom">
+                        close
+                    </span>
+                    Close
+                </button>
+                <button type="button" class="btn btn-success">
+                    <span class="material-icons align-bottom">
+                        save
+                    </span>
+                    Save
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

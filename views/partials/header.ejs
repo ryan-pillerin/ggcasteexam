@@ -14,7 +14,7 @@
                 <img class="rounded-circle z-depth-2 mx-3" style="width: 40px;" alt="100x100" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg" data-holder-rendered="true">
                 Hi <%= user.firstname %>
             </button>
-            <ul class="dropdown-menu dropdown-menu-start text-center">
+            <ul class="dropdown-menu dropdown-menu-end text-center">
                 <a class="btn dropdown-menu-item" href="#">
                     <span class="material-icons align-bottom">
                         logout
@@ -28,28 +28,23 @@
 
 <div class="offcanvas offcanvas-start p-3" tabindex="-1" id="mainmenu" aria-labelledby="mainmenuLabel">
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="mainmenuLabel">
-          <img class="img-thumbnail w-25" style="border:none;" src="/img/ggcast-logo.jpg"> <%= pageTitle %>
-      </h5>
+        <h5 class="offcanvas-title" id="mainmenuLabel">
+            <img class="img-thumbnail w-25" style="border:none;" src="/img/ggcast-logo.jpg"> 
+            Welcome to GGCAST
+        </h5>
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    <div class="offcanvas-body" style="padding:0;margin:0;">
-        <ul class="list-group">
-            <a href="/" class="list-group-item list-group-item-action">
-                <span class="material-icons align-bottom mx-3">dashboard</span>
-                Dashboard
-            </a>
-            <a href="/manageaccount" class="list-group-item list-group-item-action">
-                <span class="material-icons align-bottom mx-3">manage_accounts</span>
-                Manage Account
-            </a>
-            <hr>
-            <a href="/" class="list-group-item list-group-item-action">
-                <span class="material-icons align-bottom mx-3">settings</span>
-                Settings
-            </a>
-        </ul>
-        
+    <div class="offcanvas-body">
+        <div class="container-fluid">
+            <ul class="list-group list-group-flush">
+                <a href="/" class="list-group-item list-group-item-action">Dashboard</a>
+                <a href="#settingMenu" data-bs-toggle="collapse" aria-expanded="false" aria-controls="settingMenu" class="list-group-item list-group-item-action">Settings</a>
+                    <ul class="list-group list-group-flush collapse px-3" id="settingMenu">
+                        <a href="/subjects" class="list-group-item list-group-item-action">Subjects</a>
+                        <a href="/curriculum" class="list-group-item list-group-item-action">Curriculum</a>
+                    </ul>
+            </ul>
+        </div>
     </div>
 </div>
 <% } %>

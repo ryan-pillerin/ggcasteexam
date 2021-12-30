@@ -29,6 +29,8 @@ const registerRoute = require('./routes/registration')
 
 const indexRoute = require('./routes/index')
 const manageAccountRoute = require('./routes/manageaccount')
+const curriculumRoute = require('./routes/curriculum')
+const subjectsRoute = require('./routes/subjects')
 
 // Unit Test
 const app = express()
@@ -55,6 +57,8 @@ app.use(passport.session())
 
 app.use('/', indexRoute)
 app.use('/manageaccount', manageAccountRoute)
+app.use('/curriculum', curriculumRoute)
+app.use('/subjects', subjectsRoute)
 
 app.use('/managedb', managedbRoute)
 app.use('/exam', examRoute)
