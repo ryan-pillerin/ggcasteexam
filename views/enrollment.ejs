@@ -1,0 +1,58 @@
+<div class="container-fluid">
+    <div class="row mx-5 mt-3 rounded border">
+        <div class="col-sm-12 col-md-6 p-0 m-0">
+            <img class="img-fluid pt-4 px-3" src="/img/header-logo.png">
+            <h3 class="text-center mt-3">Welcome to GGCAST Online Enrollment</h3>
+            <div style="font-size:0.8rem;" class="text-muted text-center">
+                Barangay Poblacion, Governor Generoso, Davao Oriental <br>
+                +63 910 282 7761 | registrar@ggcast.edu.ph
+            </div>  
+        </div>
+        <div class="col-sm-12 col-md-6 p-0 m-0 bg-success bg-gradient text-white"> 
+            <div id="step1">
+            <%- include('partials/enrollment_process/step_1.ejs') %>     
+            </div>
+
+            <div id="step2 fade">
+
+            </div>
+
+            <div class="col-sm-12 col-md-12 text-end px-3 pb-3">
+                <button type="button" class="btn btn-secondary" id="btnprevious" step="1">
+                    <span class="material-icons align-bottom">
+                        keyboard_arrow_left
+                    </span>
+                </button>
+                <button type="button" class="btn btn-secondary" id="btnnext" step="1">
+                    <span class="material-icons align-bottom">
+                        keyboard_arrow_right
+                    </span>
+                </button>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<script type="text/javascript">
+    let previous = $('#btnprevious')
+    let next = $("#btnnext")
+
+    $(document).ready(function() {
+        if ( previous.attr('step') == 1 ) {
+            previous.hide('slow')
+        }
+        
+        /**
+         * To move the next step
+         * */
+        next.click( (e) => {
+            e.preventDefault()
+            $('#step1').hide('slow')
+            previous.attr('step', 2)
+            previous.show('slow')
+            this.attr('step', 2)
+        })
+    })
+
+</script>

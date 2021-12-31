@@ -31,6 +31,7 @@ const indexRoute = require('./routes/index')
 const manageAccountRoute = require('./routes/manageaccount')
 const curriculumRoute = require('./routes/curriculum')
 const subjectsRoute = require('./routes/subjects')
+const enrollmentRoute = require('./routes/enrollment')
 
 // Unit Test
 const app = express()
@@ -59,6 +60,7 @@ app.use('/', indexRoute)
 app.use('/manageaccount', manageAccountRoute)
 app.use('/curriculum', curriculumRoute)
 app.use('/subjects', subjectsRoute)
+app.use('/enrollment', enrollmentRoute)
 
 app.use('/managedb', managedbRoute)
 app.use('/exam', examRoute)
