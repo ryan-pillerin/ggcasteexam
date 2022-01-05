@@ -26,6 +26,7 @@ const dashboardRoute = require('./routes/dashboard')
 const loginRoute = require('./routes/login')
 const registerRoute = require('./routes/registration')
 
+
 // Unit Test
 const app = express()
 
@@ -53,6 +54,8 @@ app.use('/exam', examRoute)
 app.use('/dashboard', dashboardRoute)
 app.use('/', loginRoute)
 app.use('/registration', registerRoute)
+
+
 
 app.listen(3000, async() => {
     console.log("----------------------------------------------")

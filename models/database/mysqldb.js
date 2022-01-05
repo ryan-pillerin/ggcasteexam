@@ -7,7 +7,7 @@ let config = {
     host: '192.168.2.14',
     user: 'root',
     password: 'moth34board',
-    database: 'ggcastexam'
+    database: 'ggcastlms'
 }
 
 let _conn = null
