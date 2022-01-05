@@ -1,7 +1,5 @@
 const e = require('express');
 const MySQL = require('mysql');
-const { resolve } = require('path');
-const util = require('util');
 
 let config = {
     host: '192.168.2.14',
@@ -44,11 +42,15 @@ const _connect = async () => {
 
 const sqlCommand = async ( sql ) => {
 
-    let promise = new Promise( (resolve) => {
+    let promise = new Promise( (resolve, reject) => {
         _connect().then( (result) => {
             let conn = result.conn
             conn.query(sql, (err, result) => {
-                resolve(result)
+                if (err) {
+                    resolve(err)
+                } else {
+                    resolve(result)
+                }
             })
         })
     })

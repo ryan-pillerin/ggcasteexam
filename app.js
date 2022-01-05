@@ -1,13 +1,11 @@
 const express = require('express')
-const ejs = require('ejs')
 const expressLayouts = require('express-ejs-layouts')
-const encryption = require('./models/encryption/aes256')
-const {v1: guid} = require('uuid')
-const dateFormat = require('date-and-time')
 const passport = require('passport')
 const flash = require('express-flash')
 const session = require('express-session')
-const mysqlDB = require('./models/database/mysqldb')
+const facultyModel = require('./models/manageaccount/faculty')
+const cron = require('node-cron')
+const dateFormat = require('date-and-time')
 
 // Passport
 const initializePassport = require('./models/passport-config')
@@ -18,6 +16,9 @@ initializePassport(
 )   
 
 let users = []
+facultyModel.getAllFacultyData().then( (results) => {
+    users = results   
+})
 
 // Routes
 const managedbRoute = require('./routes/database/managedb')
@@ -26,6 +27,11 @@ const dashboardRoute = require('./routes/dashboard')
 const loginRoute = require('./routes/login')
 const registerRoute = require('./routes/registration')
 
+const indexRoute = require('./routes/index')
+const manageAccountRoute = require('./routes/manageaccount')
+const curriculumRoute = require('./routes/curriculum')
+const subjectsRoute = require('./routes/subjects')
+const enrollmentRoute = require('./routes/enrollment')
 
 // Unit Test
 const app = express()
@@ -34,6 +40,7 @@ app.use(express.static('public'))
 app.use('/css', express.static(__dirname + 'public/css'))
 app.use('/js', express.static(__dirname + 'public/js'))
 app.use('/img', express.static(__dirname + 'public/img'))
+app.use('/bootstrap', express.static(__dirname + 'public/bootstrap'))
 
 // Set Template Engine
 app.use(expressLayouts)
@@ -49,13 +56,31 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
+app.use('/', indexRoute)
+app.use('/manageaccount', manageAccountRoute)
+app.use('/curriculum', curriculumRoute)
+app.use('/subjects', subjectsRoute)
+app.use('/enrollment', enrollmentRoute)
+
 app.use('/managedb', managedbRoute)
 app.use('/exam', examRoute)
 app.use('/dashboard', dashboardRoute)
-app.use('/', loginRoute)
+app.use('/login', loginRoute)
 app.use('/registration', registerRoute)
 
 
+//const testModule = require('./models/manageaccount/faculty')
+//const syncData = require('./models/syncfacultydata')
+
+// Cron Jeb Execution
+let task = cron.schedule('0 */4 * * *', async () => {
+    let cronDate = dateFormat.format(new Date(), 'MM/DD/YYYY - hh:mm:ss A')
+    console.log(cronDate + ": Updating the user's list for login...")
+    facultyModel.getAllFacultyData().then( (results) => {
+        users = results
+        console.log(cronDate + ": User's list successfully updated!")   
+    })
+});
 
 app.listen(3000, async() => {
     console.log("----------------------------------------------")
@@ -66,11 +91,8 @@ app.listen(3000, async() => {
     console.log(guid())
     console.log(dateFormat.format(new Date(), 'YYYY/MM/DD HH:mm:ss'))
     */
-    let promise = new Promise( (resolve, reject) => {
-        mysqlDB.sqlCommand("SELECT * FROM accounts").then( (result) => {
-            resolve(result)
-        })
-    })
-
-    users = await promise
+    //syncData.syncDataFromSRMS()
+    //console.log(testModule.getAllFacultyData())
+    task.start()
+    //syncData.syncStudentDataFromSRMS()
 })

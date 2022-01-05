@@ -56,10 +56,9 @@ routes.post('/getallfacilitator', (req, res) => {
 
 function checkAuthenticated(req, res, next) {
     if ( req.isAuthenticated() ) {
-        // Authorization
         return next()
     } else {
-        res.redirect('/')
+        res.redirect('/login')
     }
 }
 

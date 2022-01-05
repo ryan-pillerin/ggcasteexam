@@ -31,11 +31,13 @@
     "html2pdf.js": "^0.10.1",
     "kothing-editor": "^0.1.4",
     "mysql": "^2.18.1",
+    "node-cron": "^3.0.0",
     "nodemon": "^2.0.15",
     "passport": "^0.5.2",
     "passport-local": "^1.0.0",
     "puppeteer": "^1.20.0",
     "uuid": "^8.3.2",
-    "webcam-easy": "^1.0.5"
+    "webcam-easy": "^1.0.5",
+    "popper.js": "^1.16.1"
   }
 }

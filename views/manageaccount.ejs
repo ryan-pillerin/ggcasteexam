@@ -1,0 +1,120 @@
+
+<!-- <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>The account is successfully save!</strong> You can now login using the username and password provided.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div> -->
+
+<div class="card mx-3 mt-3">
+    <h5 class="card-header p-3 bg-secondary text-white">
+        <span class="material-icons align-bottom">
+            account_box
+        </span>
+        Faculty Accounts
+    </h5>
+    <div class="card-body">
+        <div class="list-group" style="max-height: 100vw;overflow-y: scroll;">
+            <% facultyData.forEach( (value, key) => { %>
+            <a href="#" class="list-group-item list-group-item-action facultyList" onclick="setActiveListGroup(this)" aria-current="true">
+                <div class="d-flex w-100 justify-content-between" style="border-bottom: 1px solid #CCC;">
+                    <h6 class="mb-1" style="font-size: .8rem;">
+                        <img class="rounded-circle z-depth-2 mx-3" style="width: 40px;" alt="100x100" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg" data-holder-rendered="true">
+                        <%= value.firstname + ' ' + value.lastname %>
+                    </h6>
+                </div>
+                <div class="mb-1">
+                    
+                </div>
+                <div class="container-fluid mt-3 text-end">
+                    <button type="button" 
+                        class="btn btn-sm btn-success" 
+                        data-id="<%= value.id %>"
+                        data-value="<%= value.firstname + ' ' + value.lastname %>"
+                        data-bs-toggle="modal" 
+                        data-bs-target="#userAccountModal"
+                        onclick="setModalTitle(this)"
+                    >View Details</button>
+                </div>
+            </a>
+            <% }) %>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Setting of User Account -->
+<div class="modal fade" id="userAccountModal" tabindex="-1" aria-labelledby="userAccountLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="userAccountLabel">Account Setup</h5>
+            </div>
+            <form class="row g-3 needs-validation" novalidate action="/manageaccount/createaccount" method="post">
+                <div class="modal-body">
+                    <p id="userAccountDisplay" class="px-3"></p>
+                    <hr>
+                    <div class="col-md-12 px-3">
+                        <label for="validateUsername" class="form-label">Username</label>
+                        <input type="text" name="username" class="form-control is-invalid" id="validateUsername" value="" required placeholder="Enter Username">
+                        <div class="invalid-feedback">
+                            Please enter a username.
+                        </div>
+                    </div>
+                    <div class="col-md-12 px-3">
+                        <label for="validatepassword" class="form-label">Password</label>
+                        <input type="password" name="password" class="form-control" id="validatepassword" value="" placeholder="Enter Password" required>
+                        <div class="invalid-feedback">
+                            Please enter a password.
+                        </div>
+                        <input type="hidden" id="facultyid" name="facultyid" >
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+const setActiveListGroup = (obj) => {
+    let elem = document.getElementsByClassName('facultyList')
+    
+    for ( index = 0; index < elem.length; index++ ) {
+        elem[index].classList.remove('active')
+    }
+
+    obj.classList.add('active')
+}
+
+const setModalTitle = (obj) => {
+    let elm = document.getElementById('userAccountDisplay')
+    let elmHidden = document.getElementById('facultyid')
+    elm.innerHTML = obj.getAttribute('data-value')
+    elm.setAttribute('data-id', obj.getAttribute('data-id'))
+    elmHidden.setAttribute('value', obj.getAttribute('data-id'))
+}
+
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+        
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+
+</script>
