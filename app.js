@@ -68,6 +68,7 @@ app.use('/dashboard', dashboardRoute)
 app.use('/login', loginRoute)
 app.use('/registration', registerRoute)
 
+
 //const testModule = require('./models/manageaccount/faculty')
 //const syncData = require('./models/syncfacultydata')
 
