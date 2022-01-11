@@ -2,9 +2,9 @@ const e = require('express');
 const MySQL = require('mysql');
 
 let config = {
-    host: '192.168.2.14',
-    user: 'root',
-    password: 'moth34board',
+    host: 'localhost',
+    user: 'boss8petshop',
+    password: '0CT242009@pril181985',
     database: 'ggcastlms'
 }
 
