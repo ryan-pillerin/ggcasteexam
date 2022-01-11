@@ -10,11 +10,9 @@ routes.get('/', async (req, res) => {
     })
 
     res.render('manageaccount', {
-        title: 'GGCAST eLMS: Manage Account',
+        title: 'GGCAST eLMS: User Accounts',
         page: 'manageaccount',
         pageTitle: 'Manage Account',
-        facultyData: await promise,
-        user: req.user
     })
 })
 
