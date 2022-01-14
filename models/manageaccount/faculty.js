@@ -15,7 +15,7 @@ const getAllFacultyData = async () => {
         let sql = 'SELECT accounts.id, accounts.username, accounts.password, ' +
                   'faculty.facultynumber, faculty.firstname, faculty.lastname ' +
                   'FROM accounts INNER JOIN faculty ' +
-                  'ON accounts.id = faculty.accountid '
+                  'ON accounts.referenceid = faculty.id '
         MySQLDB.sqlCommand(sql).then( (results) => {
             resolve(results)
         })
