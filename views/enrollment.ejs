@@ -1,58 +1,38 @@
 <div class="container-fluid">
-    <div class="row mx-5 mt-3 rounded border">
-        <div class="col-sm-12 col-md-6 p-0 m-0">
-            <img class="img-fluid pt-4 px-3" src="/img/header-logo.png">
-            <h3 class="text-center mt-3">Welcome to GGCAST Online Enrollment</h3>
-            <div style="font-size:0.8rem;" class="text-muted text-center">
-                Barangay Poblacion, Governor Generoso, Davao Oriental <br>
-                +63 910 282 7761 | registrar@ggcast.edu.ph
-            </div>  
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <div class="card mt-5 " style="margin: 0 auto;width: 60%;">
+            <div class="card">
+                <div class="card-header">
+                    <img src="/img/header-logo.png" class="card-img-top p-3" alt="...">
+                    <div class="position-absolute bottom-0 end-0"></div>
+                    <p class="card-text text-end" style="margin: 0;">Poblacion, Governor Generoso Davao Oriental</p>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-4 text-end" style="font-size: 0.8rem;">ggcast.edu.ph</div>
+                            <div class="col-md-4 text-end" style="font-size: 0.8rem;">+639102827761</div>
+                            <div class="col-md-4 text-end" style="font-size: 0.8rem;">registrar@ggcast.edu.ph</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body mt-5">
+                    <div class="container-fluid"></div>
+                    <div class="card-body"> 
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-header">
+                              Featured
+                            </div>
+                            <ul class="list-group list-group-flush">
+                              <li class="list-group-item">An item</li>
+                              <li class="list-group-item">A second item</li>
+                              <li class="list-group-item">A third item</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-sm-12 col-md-6 p-0 m-0 bg-success bg-gradient text-white"> 
-            <div id="step1">
-            <%- include('partials/enrollment_process/step_1.ejs') %>     
-            </div>
-
-            <div id="step2 fade">
-
-            </div>
-
-            <div class="col-sm-12 col-md-12 text-end px-3 pb-3">
-                <button type="button" class="btn btn-secondary" id="btnprevious" step="1">
-                    <span class="material-icons align-bottom">
-                        keyboard_arrow_left
-                    </span>
-                </button>
-                <button type="button" class="btn btn-secondary" id="btnnext" step="1">
-                    <span class="material-icons align-bottom">
-                        keyboard_arrow_right
-                    </span>
-                </button>
-            </div>
-        </div>
-        
     </div>
 </div>
-
-<script type="text/javascript">
-    let previous = $('#btnprevious')
-    let next = $("#btnnext")
-
-    $(document).ready(function() {
-        if ( previous.attr('step') == 1 ) {
-            previous.hide('slow')
-        }
+</div>
         
-        /**
-         * To move the next step
-         * */
-        next.click( (e) => {
-            e.preventDefault()
-            $('#step1').hide('slow')
-            previous.attr('step', 2)
-            previous.show('slow')
-            this.attr('step', 2)
-        })
-    })
-
-</script>
