@@ -35,9 +35,10 @@
     "nodemon": "^2.0.15",
     "passport": "^0.5.2",
     "passport-local": "^1.0.0",
+    "popper.js": "^1.16.1",
     "puppeteer": "^1.20.0",
+    "slashes": "^2.0.2",
     "uuid": "^8.3.2",
-    "webcam-easy": "^1.0.5",
-    "popper.js": "^1.16.1"
+    "webcam-easy": "^1.0.5"
   }
 }

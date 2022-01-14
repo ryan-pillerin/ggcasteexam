@@ -2,19 +2,18 @@
     <div class="row mx-3 p-3" style="border-bottom: 1px solid #CCC">
         <div class="col-sm-12 col-md-10">
             <h3 class="text-uppercase">Setup Subjects</h3>
-            <p class="text-muted">
-                Setup Subjects is the procedure that allows the administrator to add, edit, and delete subjects that will be used in the creation of a curriculum. 
-                After a subject has been used in the curriculum, no user has the ability to edit or delete it. Aside from that, any inactive subjects are no longer permitted to be used in the creation of a curriculum. 
-                Additionally, any active subjects cannot be edited; they must first be set to inactive before being edited.
+            <p class="text-muted" style="text-align: justify;">
+                In the Setup Subjects section, the first step is to create subjects that will be used in the curriculum creation process. The default status of an added subject is inactive until it is reviewed and approved by anyone who is authorized to review or approve the subject.
+                All of the approved subjects are the only subjects that can be used in the curriculum creation process.
             </p>
         </div>
-        <div class="col-sm-12 col-md-2 text-end">
+        <div class="col-sm-12 col-md-2 text-end">            
             <a href="" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addsubjectsModal"> 
                 <span class="material-icons align-bottom">
                 add
                 </span>
             </a>
-            <a href="" class="btn btn-danger"> 
+            <a href="#" class="btn btn-danger"> 
                 <span class="material-icons align-bottom">
                 delete
                 </span>
@@ -24,24 +23,72 @@
     <div class="row mx-3 mt-3">
         <div class="col-sm-12 col-md-12">
             <div class="table-responsive" style="overflow-x:auto;">
-                <table class="table" style="min-width: 800px;">
-                    <thead class="bg-primary text-white">
+                <table class="table table-bordered table-hover table-striped" style="min-width: 720px;">
+                    <thead class="text-white" style="background-color:#238C2A;font-size: 0.8rem;">
                         <tr>
-                            <th style="width: 5%;">&nbsp;</th>
-                            <th style="width: 50%;">Subjects</th>
-                            <th style="width: 15%;" class="text-center">Units</th>
-                            <th style="width: 15%;" class="text-center">Status</th>
-                            <th style="width: 15%;">Action</th>
+                            <th style="width: 60%;">Subject</th>
+                            <th style="width: 20%;" colspan="3" class="text-center">Units</th>
+                            <th style="width: 20%;" class="text-center">Actions</th>
                         </tr>
                     </thead>
                     <tbody id="table-content">
-                        <tr>
-                            <td colspan="5" class="text-center">There are no subjects available in the list at the moment.</td>
-                        </tr>
+                        <% if ( data ) { %>
+                            <% data.forEach( (item, key) => { %>
+                                <tr>
+                                    <td>
+                                        <div><%= item.code %> - <%= item.title %></div>
+                                        <div class="text-muted px-2 pb-2 border-bottom" style="font-size: 0.8rem;"><%= item.description %></div>
+                                        <div>
+                                            <div>
+                                                <% if ( item.status == 0 ) { %>
+                                                <span class="badge bg-danger">Inactive</span>
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-0 m-0">
+                                        <div class="text-center p-0 m-0 px-2 border-bottom">Lec</div>
+                                        <div class="text-center"><%= item.unitslec %></div>
+                                    </td>
+                                    <td class="p-0 m-0">
+                                        <div class="text-center p-0 m-0 px-2 border-bottom">Lab</div>
+                                        <div class="text-center"><%= item.unitslab %></div>
+                                    </td>
+                                    <td class="p-0 m-0">    
+                                        <div class="text-center p-0 m-0 px-2 border-bottom">Total</div>
+                                        <div class="text-center"><%= parseInt(item.unitslec) + parseInt(item.unitslab) %></div>
+                                    </td>
+                                    <td class="text-center">
+                                        <!-- If the user is authorized for reviewed-->
+                                        <a href="#" class="btn btn-secondary"
+                                            data-bs-toggle="tooltip" data-bs-placement="top" title="Edit the Subject"
+                                            >
+                                            <span class="material-icons align-middle">edit</span>
+                                        </a>
+                                        <a href="#" class="btn btn-danger"
+                                            data-bs-toggle="tooltip" data-bs-placement="top" title="Delete the Subject"
+                                            >
+                                            <span class="material-icons align-middle">delete</span>
+                                        </a>
+                                        <a href="#" class="btn btn-warning"
+                                            data-bs-toggle="tooltip" data-bs-placement="top" title="Review the Subject"
+                                            >
+                                            <span class="material-icons align-middle">rate_review</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        <% } else { %>
+                            <tr>
+                                <td colspan="3" class="text-center text-muted" style="font-size: 0.8rem;">There are no subjects available in the list at the moment.</td>
+                            </tr>
+                        <% } %>
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="5"><span class="badge bg-success">Active</span> | <span class="badge bg-warning">Inactive</span></td>
+                            <td colspan="3">
+                                
+                            </td>
                         </tr>
                     </tfoot>
                 </table>
@@ -51,62 +98,21 @@
 </div>
 
 
-<!-- Modal Forms -->
-<div class="modal fade" id="addsubjectsModal" tabindex="-1" aria-labelledby="addsubjectsModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-fullscreen">
-        <div class="modal-content">
-            <div class="modal-header bg-primary">
-                <h5 class="modal-title text-white" id="addsubjectsModalLabel">Add Subject</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="coursenumber" required placeholder="e.g. GE 1">
-                    <label for="coursenumber">Course No.</label>
-                    <span class="text-muted" style="font-size: 0.8rem;">
-                        e.g. GE 1, FIL 101, MATH 101, or EL 101
-                    </span>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="coursetitle" placeholder="e.g. Understanding the Self">
-                    <label for="coursetitle">Course Title</label>
-                    <span class="text-muted" style="font-size: 0.8rem;">
-                        e.g. Understanding the Self, Introduction sa Pag-aaral ng Wika, or College and Advance Algebra
-                    </span>
-                </div>
-                <div class="form-floating mb-3">
-                    <textarea style="height: 200px;" class="form-control" id="coursedescription" placeholder="Course Description" rows="3"></textarea>
-                    <label for="coursedecription">Course Description</label>
-                    <span class="text-muted" style="font-size: 0.8rem;">
-                        The course description can be found under CHED Policies, Standards, and Guidelines per Program.
-                    </span>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="number" class="form-control" id="unitlec" placeholder="Number of Units" value="0">
-                    <label for="unitlecture">Lecture Units</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="number" class="form-control" id="unitlab" placeholder="Number of Units" value="0">
-                    <label for="unitlab">Laboratory Units</label>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    <span class="material-icons align-bottom">
-                        close
-                    </span>
-                    Close
-                </button>
-                <button type="button" class="btn btn-success" id="btnAddSubject">
-                    <span class="material-icons align-bottom">
-                        save
-                    </span>
-                    Save
-                </button>
-            </div>
+
+<div class="position-fixed bottom-0 start-0 p-3" style="z-index: 9999">
+    <div id="liveToast" class="toast hide border border-success" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header bg-success text-white">
+            <strong class="me-auto">New Course Added!</strong>           
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            The record was successfully updated with a new course.
         </div>
     </div>
 </div>
 
 
   
+<%- include('partials/modals/subjects/_addsubject.ejs') %>
+
+<script type="module" src="/js/subjects/main.js"></script>

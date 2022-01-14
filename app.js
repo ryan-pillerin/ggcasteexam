@@ -6,6 +6,9 @@ const session = require('express-session')
 const facultyModel = require('./models/manageaccount/faculty')
 const cron = require('node-cron')
 const dateFormat = require('date-and-time')
+//const syncData = require('./models/syncfacultydata')
+
+const app = express()
 
 // Passport
 const initializePassport = require('./models/passport-config')
@@ -19,6 +22,8 @@ let users = []
 facultyModel.getAllFacultyData().then( (results) => {
     users = results   
 })
+
+console.log(users)
 
 // Routes
 const managedbRoute = require('./routes/database/managedb')
@@ -36,12 +41,15 @@ const corRoute=require('./routes/cor')
 
 // Unit Test
 const app = express()
+const settingsRoute = require('./routes/settings')
+const enrollRoute = require('./routes/enroll')
 
 app.use(express.static('public'))
 app.use('/css', express.static(__dirname + 'public/css'))
 app.use('/js', express.static(__dirname + 'public/js'))
 app.use('/img', express.static(__dirname + 'public/img'))
 app.use('/bootstrap', express.static(__dirname + 'public/bootstrap'))
+app.use('/libraries', express.static(__dirname + 'public/libraries'))
 
 // Set Template Engine
 app.use(expressLayouts)
@@ -54,10 +62,12 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }))
+
 app.use(passport.initialize())
 app.use(passport.session())
 
 app.use('/', indexRoute)
+app.use('/settings', settingsRoute)
 app.use('/manageaccount', manageAccountRoute)
 app.use('/curriculum', curriculumRoute)
 app.use('/subjects', subjectsRoute)
@@ -69,12 +79,13 @@ app.use('/login', loginRoute)
 app.use('/registration', registerRoute)
 app.use('/reg', regRoute)
 app.use('/cor', corRoute)
+app.use('/enroll', enrollRoute)
 
 
 //const testModule = require('./models/manageaccount/faculty')
-//const syncData = require('./models/syncfacultydata')
+const syncData = require('./models/syncfacultydata')
 
-// Cron Jeb Execution
+// Cron Jeb Execution*/
 let task = cron.schedule('0 */4 * * *', async () => {
     let cronDate = dateFormat.format(new Date(), 'MM/DD/YYYY - hh:mm:ss A')
     console.log(cronDate + ": Updating the user's list for login...")
@@ -95,6 +106,8 @@ app.listen(3000, async() => {
     */
     //syncData.syncDataFromSRMS()
     //console.log(testModule.getAllFacultyData())
+    //syncData.syncSubjectNewFromOldSRMS();
+
     task.start()
-    //syncData.syncStudentDataFromSRMS()
+    
 })

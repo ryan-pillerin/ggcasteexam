@@ -1,6 +1,7 @@
 const MySQL = require('mysql');
 const {v1: guid} = require('uuid')
 const dateFormat = require('date-and-time')
+const { addSlashes, stripSlashes } = require('slashes');
 
 let config_srms = {
     host: '192.168.2.14',
@@ -138,7 +139,82 @@ const syncStudentDataFromSRMS = async () => {
 
 }
 
+const syncSubjectNewFromOldSRMS = async () => {
+    /**
+     * Subjects - Sync from srms subjects to ggcastlms subjects
+     */
+     conn_srms = MySQL.createConnection(config_srms)
+
+     let _promise = new Promise( (resolve, reject) => {
+        conn_srms.connect( (err) => {
+            resolve(conn_srms)
+        })
+    })
+
+    conn_srms = await _promise
+    sql = "SELECT * FROM subjects"
+    _promise = null
+
+    _promise = new Promise( (resolve, reject) => {
+        conn_srms.query(sql, (err, rows) => {
+            if ( err ) {
+                reject(err)
+            } else {
+                resolve(rows)
+            }
+        })
+    })
+    
+    let data = await _promise
+    let userid = '6b2572f6-6243-11ec-a1e9-1793120ac5d7'
+    
+    connLMS = MySQL.createConnection(config_lms)
+    _promise = new Promise( (resolve, reject) => {
+        connLMS.connect( (err) => {
+            resolve(connLMS)
+        })
+    })
+
+    connLMS = await _promise
+
+    data.forEach( async (item, key) => {
+
+        let transDate = dateFormat.format(new Date(), 'YYYY-MM-DD hh:mm:ss')
+        _promise = null
+        let id = guid()
+        let lecUnit = item.lecunit == '' ? 0 : item.lecunit
+        let labUnit = item.labunit == '' ? 0 : item.labunit
+
+        let sql = "INSERT INTO courses(id, code, title, unitslab, unitslec, status, " +
+                  "createdby, updatedby, createddate, updateddate) VALUES('" + id + "','" + item.SubjectCode + "', " +
+                  "'" + addSlashes(item.description) + "', '" + lecUnit + "', '" + labUnit + "', 1, '" + userid + "', '" + userid + "', " +
+                  "'" + transDate + "', '" + transDate + "')"
+
+        _promise = new Promise( (resolve, reject) => {
+            connLMS.query(sql, (err, rows) => {
+                if ( err ) {
+                    console.log(sql)
+                    console.log(`${item.SubjectCode} - ${item.description}: Not able to add in the database.`)
+                    console.log(`Error Message: ${err}`)
+                    console.log('==================================================================')
+                    reject(err)
+                } else {
+                    console.log(item.SubjectCode + ': ' + item.description)
+                    console.log('Lec Units: ' + item.lecunit + ' | ' + 'Lab Units: ' + item.labunit)
+                    console.log('Prerequisite: ' + item.prereq)
+                    console.log('Program: ' + item.Course)
+                    console.log('Status: Added Successful!')
+                    console.log('==================================================================')
+                }
+            })
+        })
+
+        console.log(await _promise)
+    })
+}
+
 module.exports = {
     syncDataFromSRMS,
-    syncStudentDataFromSRMS
+    syncStudentDataFromSRMS,
+    syncSubjectNewFromOldSRMS
 }
