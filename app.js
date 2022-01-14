@@ -29,12 +29,16 @@ const examRoute = require('./routes/exam')
 const dashboardRoute = require('./routes/dashboard')
 const loginRoute = require('./routes/login')
 const registerRoute = require('./routes/registration')
-
+const regRoute = require('./routes/reg')
 const indexRoute = require('./routes/index')
 const manageAccountRoute = require('./routes/manageaccount')
 const curriculumRoute = require('./routes/curriculum')
 const subjectsRoute = require('./routes/subjects')
 const enrollmentRoute = require('./routes/enrollment')
+const corRoute=require('./routes/cor')
+
+// Unit Test
+const app = express()
 const settingsRoute = require('./routes/settings')
 const enrollRoute = require('./routes/enroll')
 
@@ -66,12 +70,13 @@ app.use('/manageaccount', manageAccountRoute)
 app.use('/curriculum', curriculumRoute)
 app.use('/subjects', subjectsRoute)
 app.use('/enrollment', enrollmentRoute)
-
 app.use('/managedb', managedbRoute)
 app.use('/exam', examRoute)
 app.use('/dashboard', dashboardRoute)
 app.use('/login', loginRoute)
 app.use('/registration', registerRoute)
+app.use('/reg', regRoute)
+app.use('/cor', corRoute)
 app.use('/enroll', enrollRoute)
 
 
@@ -90,7 +95,7 @@ let task = cron.schedule('0 */4 * * *', async () => {
     curriculaModel.autoAddAcademicYearandSemester()
 });
 
-app.listen(3000, async() => {
+app.listen(4000, async() => {
     console.log("----------------------------------------------")
     console.log("GGCAST Electronic Exam Server is running!")
     console.log("----------------------------------------------")

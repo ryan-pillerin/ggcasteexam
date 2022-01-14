@@ -2,37 +2,18 @@ export default class DirectoryList {
     constructor () {       
 
         this.provinces = {
-            davor: {
-                province: 'Davao Oriental',
-                cities: {
-                    govgen: {
-                        city: 'Governor Generoso',
-                        barangays: {
-                            pob: 'Poblacion',
-                            dac: 'Don Aurelio Chicote'
-                        }
-                    },
-                    sanisidro: {
-                        city: 'San Isidro',
-                        barangays: {
-                            bt: 'Bato-Bato'
-                        }
-                    },
-                    lupon: {
-                        city: 'Lupon',
-                        barangays: {
-
-                        }
-                    },
-                    banaybanay: {
-                        city: 'Banaybanay',
-                        barangays: {
-
+            "davor": {
+                "province": "Davao Oriental",
+                "cities": {
+                    "bag": {
+                        "city": "Bagangga",
+                        "barangays": {
+                            "pob": "Poblacion"
                         }
                     }
                 }
             },
-            davnor: 'Davao Del Norte'
+            "davnor": "Davao Del Norte"
         }       
     }
 

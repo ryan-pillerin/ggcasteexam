@@ -1,0 +1,15 @@
+@media print {
+    .donotinclude {
+        visibility: hidden;
+    
+    }
+    #printSection {
+        position:absolute;
+        left:0;
+        top:0;    
+}
+#printSection, #printSection * {
+    visibility:visible;
+    height: 100%;
+  }
+}

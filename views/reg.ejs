@@ -1,0 +1,97 @@
+<div class="container">
+    <div class="card" style="width: 18rem md-5 ">
+        <div class="card-header mt-2 text-center" style="background-color: rgb(250, 255, 255);">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <img src="/img/header.jpg" class="img-fluid" style="width: 75%;height: 120px;"  alt="..."> 
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="col  fs-2" style="font-family:Century Gothic,CenturyGothic,AppleGothic,sans-serif;text-align: center;"> 
+                GGCAST ENTRANCE EXAM REGISTRATION
+                </div>
+                <div class="row"></div>
+                <div class="text-start">
+                    <div class=" mb-3">
+                    <label for="course" class="col-form-label">Desired Course:</label>
+                    <div class=" mb-3">
+                    <label for="course" class="col-form-label ms-5" id=course-label></label> 
+                    <div class="row"></div>                                          
+                    <label for="name" class="col-form-label" id="name">Full Name:</label>
+                    <div class="row"></div> 
+                    <label for="fullname" class="col-form-label  ms-5" id=fullname></label>  
+                    <div class="row"></div>
+                    <label for="address" class="col-form-label" id="address">Address:</label>
+                    <div class="row"></div>    
+                    <label for="address" class="col-form-label  ms-5" id=fulladdress></label>
+                    <div class="row"></div>
+                    <label for="contact" class="col-form-label" id="address">Contact Details:</label>
+                    <div class="row"></div>    
+                    <label for="emailadd" class="col-form-label  ms-5" id=email></label>  
+                    <div class="row"></div>    
+                    <label for="mobilenumber" class="col-form-label  ms-5" id=mobile></label>    
+                </div>       
+                 
+                
+
+        <button type="button" id="btnprint" class="btn btn-primary w-auto mt-3 px-5 donotinclude" onclick="window.print()">
+                    Print
+        </button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $('#btnregister').click(function(e) {
+        e.preventDefault()
+        let courseDetails = null
+
+        /**
+         *  Desired Course
+         * */
+         let course = $('#cmbcourse :selected').text()
+        $('#course-label').html(course).css({
+            'text-transform': 'uppercase'
+        })
+
+        /**
+         * Fullname
+         * */
+        let firstname = $('#firstname').val()
+        let lastname = $('#lastname').val()
+        let middlename = $('#middlename').val()
+
+        $('#fullname').html(lastname + ', ' + firstname + ' ' + middlename).css({
+            'text-transform': 'uppercase'
+        })
+        /**
+         * Fulladdress
+         * */
+        let barangay = $('#cmbbarangay :selected').text()
+        let municipality = $('#cmbmunicipality :selected').text()
+        let province = $('#cmbprovince :selected').text()
+
+        $('#fulladdress').html(barangay + ', ' + municipality + ', ' + province).css({
+            'text-transform': 'uppercase'
+        })
+
+        /**
+         * Email Address
+         * */
+        let email = $('#emailadd').val()
+        
+        $('#email').html(email)
+     
+         /**
+        * Mobile Number
+         * */
+        let mobile = $('#mobilenumber').val()
+
+        $('#mobile').html(mobile)
+    });
+</script>
