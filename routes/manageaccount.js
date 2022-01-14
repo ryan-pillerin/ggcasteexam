@@ -5,14 +5,15 @@ const faculty = require('./../models/manageaccount/faculty')
 routes.get('/', async (req, res) => {
 
     // Retrieve Faculty Data
-    let promise = new Promise( (resolve) => {
+    /*let promise = new Promise( (resolve) => {
         resolve(faculty.getAllFacultyData())
-    })
+    })*/
 
     res.render('manageaccount', {
         title: 'GGCAST eLMS: User Accounts',
         page: 'manageaccount',
         pageTitle: 'Manage Account',
+        user: req.user
     })
 })
 

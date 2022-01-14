@@ -5,7 +5,7 @@ let subject = new Subjects()
  * Events
  */
 $(document).ready( () => {
-     
+
     $('#btnAddSubject').on('click', (e) => {
         e.preventDefault()
         addSubject()
@@ -72,20 +72,43 @@ const addSubject = () => {
         let htmlData = ''
 
         subjectsBeingAdded.forEach( (value, key) => {
-            htmlData += `<tr>`
-            htmlData += `   <td class="text-center align-middle"><input type="checkbox" class=` + value.code.replace(' ', '-') + ` ></td>`
-            htmlData += `   <td><a class="btn" data-bs-toggle="collapse" href="#` + value.code.replace(' ', '-') + `" aria-expanded="false" aria-controls="` + value.code.replace(' ', '-') + `">` + value.code + ' - ' + value.title + `</a>`
-            htmlData += `       <div style="font-size: 0.8rem;" class="text-muted collapse" id="` + value.code.replace(' ', '-') + `">` + value.description + `</div></td>`
-            htmlData += `   <td class="text-center align-middle"><div> Lec: ` + value.lecUnits + ` units</div> <div> Lab: ` + value.labUnits + ` unit</div>   </td>`
-            htmlData += `   <td class="text-center align-middle">
-                                <span class="badge rounded-pill bg-success">Active</span>
-                            </td>
-                            <td class="text-center align-middle">
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+            htmlData += `
+                <tr>
+                    <td>
+                        <div>${value.code} - ${value.title}</div>
+                        <div class="text-muted" style="font-size: 0.8rem;border-bottom: 1px solid #000;text-align: justify;">
+                            ${value.description}
+                        </div>
+                        <div class="container-fluid">
+                            <div class="row" style="font-size: 0.8rem;">
+                                <div class="col-12 my-2">
+                                    <div>John Doe <strong>prepared</strong> this document at 8:00 AM on January 1, 2021.</div>
+                                    <div>John Doe <strong>evaluated</strong> this document at 9:00 AM on January 2, 2021.</div>
+                                    <div>John Doe <strong>approved</strong> this document at 10:00 AM on January 3, 2021.</div>
                                 </div>
-                            </td>`
-            htmlData += `</tr>`
+                                <div class="col-12">
+                                    <span>Status</span>: <span class="badge bg-success">Active</span>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="p-0 m-0">
+                        <div class="text-center p-0 m-0 px-2 border-bottom">Lec</div>
+                        <div class="text-center">${value.lecUnits}</div>
+                    </td>
+                    <td class="p-0 m-0">
+                        <div class="text-center p-0 m-0 px-2 border-bottom">Lab</div>
+                        <div class="text-center">${value.labUnits}</div>
+                    </td>
+                    <td class="p-0 m-0">    
+                        <div class="text-center p-0 m-0 px-2 border-bottom">Total</div>
+                        <div class="text-center">${parseInt(value.labUnits) + parseInt(value.lecUnits)}</div>
+                    </td>
+                    <td>
+                        
+                    </td>
+                </tr>
+            `
         })
         subjectList.html(htmlData)
 

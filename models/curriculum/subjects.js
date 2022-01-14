@@ -2,27 +2,32 @@ const MYSqlDB = require('./../database/mysqldb')
 const {v1: guid}  = require('uuid')
 const formatDate = require('date-and-time')
 
-const addSubject = ( {
-    code,
-    title, 
-    description,
-    units,
-    userid
-}) => {
+const addSubject = async (
+        code,
+        title, 
+        description,
+        lecunits,
+        labunits,
+        userid
+    ) => {
     let id = guid()
-    let lec = units.lec
-    let lab = units.lab
-    let dateCreated = formatDate.format(new Date(), "YYYY-MM-DD hh:mm:ss A")
+    let lec = lecunits
+    let lab = labunits
+    let dateCreated = formatDate.format(new Date(), "YYYY-MM-DD hh:mm:ss")
 
-    let sql = "INSERT INTO subjects(id, code, title, description, " +
+    let sql = "INSERT INTO subjects(id, code, subject, description, " +
               "unitslab, unitslec, status, createdby, updatedby, " +
               "createddate, updateddate) VALUES('" + id + "', '" + code + "', " +
               "'" + title + "', '" + description + "', '" + lab + "', '" + lec + "', " +
-              "1, '" + userid + "', '" + userid + "', '" + dateCreated + "', '" + dateCreated + "')"
+              "0, '" + userid + "', '" + userid + "', '" + dateCreated + "', '" + dateCreated + "')"
 
-    let promise = new Promise( (resolve) => {
-        
+    let _promise = new Promise( (resolve) => {
+        MYSqlDB.sqlCommand(sql).then( (rows) => {
+            resolve(rows)
+        })
     })
+
+    return await _promise
 }
 
 const delSubject = (id) => {

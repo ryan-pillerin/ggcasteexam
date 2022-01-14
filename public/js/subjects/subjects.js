@@ -36,17 +36,27 @@ export default class Subjects {
             title: this.title,
             description: this.description,
             lecUnits: this.lecUnits,
-            labUnits: this.labUnits,
-            action: 'save',
-            state: 'active',
-            status: 'prepared',
-            prapredby: '',
-            prepareddate: '',
-            reviewedby: '',
-            revieweddate: '',
-            approvedby: '',
-            approveddate: ''
-        })        
+            labUnits: this.labUnits,           
+            status: 0,
+        })
+        
+        /**
+         * Add subject into the database under subject
+         */
+        axios({
+            method: 'POST',
+            url: '/subjects/_addsubject',
+            data: {
+                code: this.code,
+                title: this.title,
+                description: this.description,
+                lecunits: this.lecUnits,
+                labunits: this.labUnits,
+                status: 0
+            }
+        }).then( (res) => {
+            console.log(res)
+        })
     }
 
     // Get Added Subjects
