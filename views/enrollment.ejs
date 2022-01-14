@@ -5,34 +5,284 @@
             <div class="card">
                 <div class="card-header">
                     <img src="/img/header-logo.png" class="card-img-top p-3" alt="...">
-                    <div class="position-absolute bottom-0 end-0"></div>
-                    <p class="card-text text-end" style="margin: 0;">Poblacion, Governor Generoso Davao Oriental</p>
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-4 text-end" style="font-size: 0.8rem;">ggcast.edu.ph</div>
-                            <div class="col-md-4 text-end" style="font-size: 0.8rem;">+639102827761</div>
-                            <div class="col-md-4 text-end" style="font-size: 0.8rem;">registrar@ggcast.edu.ph</div>
-                        </div>
+                    <p class="card-text text-end" style="margin: left -10px;">Poblacion, Governor Generoso Davao Oriental</p>
+                    <div class="container-fluid" style="margin-top: 0%;">
+                      <table class="table ">
+                        <thead>
+                          <tr>
+                            <th scope="col" width=24%></th>
+                            <th scope="col" width=22%></th>
+                            <th scope="col" width=10%></th>
+                            <th scope="col" width=10%></th>
+                            <th scope="col" width=10% class="text-end">
+                              <span class="badge m-0" style="color: navy;">www.ggcast.edu.ph</span>
+                            </th>
+                            <th scope="col" width=10%></th>
+                            <th scope="col" width=0% class="text-end">
+                              <span class= "badge text-wrap text-decoration-underline m-0 text-end" style="color: navy;"><span class="material-icons align-bottom">
+                                local_phone
+                                </span></span>
+                                <th scope="col" width=0% class="text-end">
+                                  <span class= "badge text-wrap text-decoration-underline m-0 text-center" style="color: navy;"><span class="material-icons align-bottom">
+                              </span>+639102827761 +639102827761</span>
+                              <th scope="col" width=0% class="text-end">
+                                <span class= "badge text-wrap text-decoration-underline m-0" style="color: navy;"><span class="material-icons align-bottom">
+                            </span></span>
+                            <th scope="col" width=0% class="text-end">
+                              <span class= "badge text-wrap text-decoration-underline m-0" style="color: navy;"><span class="material-icons align-bottom">
+                          </span></span>
+                            </th>
+                            <th scope="col" width=12% class="text-end"> 
+                              <span class="badge m-0" style="color: navy;">www.ggcast.edu.ph</span>
+                            </th>
+                          </tr>
+                        </thead>
+                      </table>
                     </div>
                 </div>
-                <div class="card-body mt-5">
-                    <div class="container-fluid"></div>
-                    <div class="card-body"> 
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-header">
-                              Featured
-                            </div>
-                            <ul class="list-group list-group-flush">
-                              <li class="list-group-item">An item</li>
-                              <li class="list-group-item">A second item</li>
-                              <li class="list-group-item">A third item</li>
-                            </ul>
-                        </div>
-                    </div>
+                <div class="card"></div>
+                    <div class="card-body">
+                        Step 1. Please select your current status.
                 </div>
-            </div>
+                <div class="card-body text-center md-5">
+                     <button type="button" class="btn btn-primary" data-bs-target="#addUserAccountModal" data-bs-toggle="modal">Old/Returnee</button>
+                     <button type="button" class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">New/Transferee</button>
+                </div>
+             </div>
         </div>
     </div>
 </div>
 </div>
         
+
+<div class="modal fade" id="addUserAccountModal" aria-hidden="true" aria-labelledby="addUserAccountModalLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" style="font-size: 1.5rem;" id="addUserAccountModalLabel"><span class="material-icons align-middle">
+                  search
+                  </span><span class="mx-2">Find a Student</span></h5>
+        
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <div class="text-center">
+              <img src="/img/ggcast-logo.jpg" width="25%">
+            </div>
+              <div class="row mt-0">
+                <div class="col-12 col-sm-3 col-md-3"></div>
+                <div class="col-12 col-sm-6 col-md-6">  
+                  <div class="text-muted">Please search your name or Id number</div>
+                  <div class="input-group text-center m-0 p-0">
+                    <input type="text" class="form-control rounded m-0" id="searchtext" placeholder="Search" aria-label="Search"
+                    aria-describedby="search-addon" />
+                  </div>
+                  <div class="table-responsive">
+                    <table class="text-red table mt-3 table table-success table-hover" table-hover; width: 620px;>
+                      <thead>
+                        <tr>
+                            <th scope="col"><div class="badge bg-primary text-wrap" style="width: 6rem;">
+                              Id Number
+                            </div></th>
+                            <th scope="col"><div class="badge bg-primary text-wrap" style="width: 6rem;">
+                              Name
+                            </div></th> 
+                            <th scope="col"><div class="badge bg-primary text-wrap" style="width: 6rem;">
+                              Program
+                            </div></th>
+                            <th scope="col"><div class="badge bg-primary text-wrap" style="width: 6rem;">
+                              Year Level
+                            </div></th>
+                            <th scope="col"><div class="badge bg-primary text-wrap" style="width: 6rem;">
+                              Action 
+                            </div>
+                            </th>
+                        </tr>
+                      </thead>
+                      <tbody id="displayrecords">
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="findAstudent" aria-hidden="true" aria-labelledby="findAstudentLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="findAstudentLabel">Results</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body mt-3">
+              <table class="text-white table" style="background-color: mediumseagreen ">
+                <thead>
+                  <tr>
+                    <th scope="col"><span class="material-icons align-bottom">
+                        perm_identity
+                        </span> ID Number</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Course/Program</th>
+                    <th scope="col">Year Level</th>
+                    <th scope="col">Status</th>
+                    <th scope="col" class="text-center">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="text-center"> 
+                      <button 
+                        type="button" 
+                        class="btn btn-outline-primary" 
+                        data-bs-target="#studentInfoModal" 
+                        data-bs-toggle="modal"
+                        data-bs-dismiss="modal" 
+                        >
+                        <span class="material-icons align-bottom">
+                          how_to_reg
+                        </span>Enroll
+                      </button>
+                      </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="text-center"> <button type="button" class="btn btn-outline-primary"><span class="material-icons align-bottom">
+                        how_to_reg
+                        </span>Enroll</button>
+                      </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2"></td>
+                    <td></td>
+                    <td></td>
+                    <td class="text-center"> <button type="button" class="btn btn-outline-primary"><span class="material-icons align-bottom">
+                        how_to_reg
+                        </span>Enroll</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">4</th>
+                    <td colspan="2"></td>
+                    <td></td>
+                    <td></td>
+                    <td class="text-center"> <button type="button" class="btn btn-outline-primary"><span class="material-icons align-bottom">
+                        how_to_reg
+                        </span>Enroll</button>
+                      </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">5</th>
+                    <td colspan="2"></td>
+                    <td></td>
+                    <td></td>
+                    <td class="text-center"> <button type="button" class="btn btn-outline-primary"><span class="material-icons align-bottom">
+                        how_to_reg
+                        </span>Enroll</button>
+                      </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="studentInfoModal" tabindex="-5" aria-labelledby="studentInfoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="studentInfoModalLabel">Registration</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <div class="container-fluid">
+            <div class="container-header">
+              <img src="/img/HEADER.jpg" class="card-img-top p-0 md-3">
+            </div>
+          <div class="row">
+            <form>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Student's Name: Noel Yap</label>
+              </div>
+                  <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4 ms-auto"></div>
+                  </div>
+                <div>
+            </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Send message</button>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggle2Label" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-fullscreen">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalToggle2Label">Search Faculty Records</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Next</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready( (e) => {
+    $('#searchtext').on('keyup', (e) => {
+         axios({
+           method: 'POST',
+           url: '/enrollment/searchstudents',
+           data: {
+             searchtext: $('#searchtext').val()
+           }
+         }).then( (response) => {
+           let data = response.data.data
+            let htmlData = ''
+           for ( const student in data) {
+              htmlData += `
+                <tr>
+                  <td> ${data[student].code}</td>
+                  <td> ${data[student].lastname}, ${data[student].firstname} ${data[student].middlename}</td>
+                  <td> ${data[student].yearlevel}</td>
+                  <td> ${data[student].course}</td>
+                  <td> 
+                    <button type="button" class="btn btn-primary btn-sm"data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">
+                      <span class="material-icons"> how_to_reg</span>Enroll
+                    </button>
+                  </td>
+                </tr>
+              `
+           }
+           $('#displayrecords').html(htmlData)
+         })
+    })
+  })
+</script>

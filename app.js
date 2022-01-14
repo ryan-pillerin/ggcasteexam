@@ -86,7 +86,7 @@ app.use('/registration', registerRoute)
     })
 });*/
 
-app.listen(3000, async() => {
+app.listen(4000, async() => {
     console.log("----------------------------------------------")
     console.log("GGCAST Electronic Exam Server is running!")
     console.log("----------------------------------------------")
