@@ -1,19 +1,19 @@
 <div class="container-fluid">
     <div class="row mx-3 p-3" style="border-bottom: 1px solid #CCC">
         <div class="col-sm-12 col-md-10">
-            <h3 class="text-uppercase">Setup Prospectus</h3>
+            <h3 class="text-uppercase">Setup Curriculum</h3>
             <p class="text-muted">
                 You only need to create a prospectus once, and it can be used to evaluate students during the enrollment process. 
                 Also, if a prospectus is no longer in use, you can deactivate it and replace it with a new one that will be used throughout the system.
             </p>
         </div>
         <div class="col-sm-12 col-md-2 text-end">
-            <a href="" class="btn btn-success" style="border:1px solid #CCC"> 
+            <a href="" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addCurriculumModal" style="border:1px solid #CCC"> 
                 <span class="material-icons align-bottom">
                 add
                 </span>
             </a>
-            <a href="" class="btn btn-secondary" style="border:1px solid #CCC"> 
+            <a href="" class="btn btn-danger" style="border:1px solid #CCC"> 
                 <span class="material-icons align-bottom">
                 delete
                 </span>
@@ -22,23 +22,16 @@
     </div>
     
     <div class="row m-3">
-        <div class="col-sm-12 col-md-6">
-            <div class="card">
-                <div class="card-header">
-                  <h5>Bachelor in Elementary Education - Generalist</h5>
-                  <span style="font-size:0.8rem;">BEED - GENERALIST</span>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">Summary</h5>
-                  <p class="card-text"></p>
-                </div>
-                <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
+        <div class="col-12">
+            <input class="form-control" list="datalistOptions" id="programDataList" placeholder="Search Program...">
+            <datalist id="datalistOptions">
+                <% programs.forEach( (item, key) => { %>
+                    <option data-id="<%= item.id %>" value="<%= item.code %> - <%= item.program %> <%= item.major == '' ? '' : 'Major in ' + item.major %>"><%= item.program %> <%= item.major == '' ? '' : 'Major in ' + item.major %></option>
+                <% }) %>
+            </datalist>
         </div>
         <div class="col-sm-12 col-md-6">
-            <div class="card">
+            <!-- <div class="card">
                 <div class="card-header">
                   <h5>Bachelor in Elementary Education - Generalist</h5>
                   <span style="font-size:0.8rem;">BEED - GENERALIST</span>
@@ -50,8 +43,24 @@
                 <div class="card-footer">
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
-
 </div>
+
+<%- include('partials/modals/curricula/_addcurriculummodal.ejs') %>
+
+<!-- <div class="container shadow min-vh-100 py-2">
+    <h5>Bootstrap 5 date picker</h5>
+    <div class="row justify-content-center">
+        <div class="col-lg-3 col-sm-6">
+            <label for="startDate">Start</label>
+            <input id="startDate" class="form-control" type="date" />
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <label for="endDate">End</label>
+            <input id="endDate" class="form-control" type="date" />
+            <span id="endDateSelected"></span>
+        </div>
+    </div>
+</div> -->

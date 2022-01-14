@@ -23,8 +23,6 @@ facultyModel.getAllFacultyData().then( (results) => {
     users = results   
 })
 
-console.log(users)
-
 // Routes
 const managedbRoute = require('./routes/database/managedb')
 const examRoute = require('./routes/exam')
@@ -79,6 +77,7 @@ app.use('/enroll', enrollRoute)
 
 //const testModule = require('./models/manageaccount/faculty')
 const syncData = require('./models/syncfacultydata')
+const curriculaModel = require('./models/curriculum/curricula')
 
 // Cron Jeb Execution*/
 let task = cron.schedule('0 */4 * * *', async () => {
@@ -88,6 +87,7 @@ let task = cron.schedule('0 */4 * * *', async () => {
         users = results
         console.log(cronDate + ": User's list successfully updated!")   
     })
+    curriculaModel.autoAddAcademicYearandSemester()
 });
 
 app.listen(3000, async() => {
@@ -102,7 +102,8 @@ app.listen(3000, async() => {
     //syncData.syncDataFromSRMS()
     //console.log(testModule.getAllFacultyData())
     //syncData.syncSubjectNewFromOldSRMS();
-
+    curriculaModel.autoAddAcademicYearandSemester()
+    curriculaModel.addCurriculum('e4870de1-66f7-11ec-83a3-d45d6439670d', 1)
     task.start()
     
 })

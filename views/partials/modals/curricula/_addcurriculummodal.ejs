@@ -1,0 +1,45 @@
+<div class="modal fade" tabindex="-1" id="addCurriculumModal">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Curriculum</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-floating">
+                    <select class="form-select" id="floatingSelect" aria-label="Programs">
+                        <% programs.forEach( (item, key) => { %>
+                            <option value="<%= item.id %>"><%= item.code %>: <%= item.program %> <%= item.major == '' ? '' : 'Major in ' + item.major %></option>
+                        <% }) %>
+                    </select>
+                    <label for="floatingSelect">Select Program</label>
+                </div>
+                <div class="form-floating mt-3">
+                    <select class="form-select" id="yearLevelSelect" aria-label="Year Level">
+                        <option value="1">1<sup>st</sup> Year</option>
+                        <option value="2">2<sup>nd</sup> Year</option>
+                        <option value="3">3<sup>rd</sup> Year</option>
+                        <option value="4">4<sup>th</sup> Year</option>
+                    </select>
+                    <label for="floatingSelect">Select Year Level</label>
+                </div>
+                <div class="form-floating mt-3">
+                    <select class="form-select" id="semesterlSelect" aria-label="Semester">
+                        <option value="1st">1<sup>st</sup> Semester</option>
+                        <option value="2nd">2<sup>nd</sup> Semester</option>
+                        <option value="summer">Summer</option>
+                    </select>
+                    <label for="floatingSelect">Select Year Level</label>
+                </div>
+                <div class="form-floating mt-3">
+                    <label for="effectivityDate">Effectivity Date</label>
+                    <input id="effectivityDate" class="form-control" type="date" value="" style="height: 90px;" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
