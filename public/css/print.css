@@ -1,0 +1,45 @@
+@media print {
+    #printContainer {
+        margin: 0;
+        padding: 0;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-top: 2rem;
+        width: 794px !important;
+        height: 1123px !important;
+        overflow: hidden !important;
+    }
+    #printContainer .img-fluid {
+        width: 100% !important;
+        height: 120px !important;
+    } 
+    
+    #printContainer .print-header-text {
+        margin-top:50px !important;
+        text-align: center !important;
+    }
+
+    #printContainer .print-data-label-first {
+        width: 100px !important;
+        font-size: 0.8rem !important;
+    }
+
+    #printContainer .print-data-label {
+       
+        font-size: 0.8rem !important;
+        
+    }
+
+    #printContainer .print-data-value {
+       
+        font-size: 0.8rem !important;
+       
+    }
+
+    #printContainer .print-data-value-small {
+        
+        font-size: 0.8rem !important;
+       
+    }
+    
+}

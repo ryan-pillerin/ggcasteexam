@@ -26,12 +26,13 @@ const examRoute = require('./routes/exam')
 const dashboardRoute = require('./routes/dashboard')
 const loginRoute = require('./routes/login')
 const registerRoute = require('./routes/registration')
-
+const regRoute = require('./routes/reg')
 const indexRoute = require('./routes/index')
 const manageAccountRoute = require('./routes/manageaccount')
 const curriculumRoute = require('./routes/curriculum')
 const subjectsRoute = require('./routes/subjects')
 const enrollmentRoute = require('./routes/enrollment')
+const corRoute=require('./routes/cor')
 
 // Unit Test
 const app = express()
@@ -61,12 +62,13 @@ app.use('/manageaccount', manageAccountRoute)
 app.use('/curriculum', curriculumRoute)
 app.use('/subjects', subjectsRoute)
 app.use('/enrollment', enrollmentRoute)
-
 app.use('/managedb', managedbRoute)
 app.use('/exam', examRoute)
 app.use('/dashboard', dashboardRoute)
 app.use('/login', loginRoute)
 app.use('/registration', registerRoute)
+app.use('/reg', regRoute)
+app.use('/cor', corRoute)
 
 
 //const testModule = require('./models/manageaccount/faculty')

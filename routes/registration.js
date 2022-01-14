@@ -6,7 +6,12 @@ const dateFormat = require('date-and-time')
 
 
 routes.get('/', (req, res) => {
-    res.render('registration', {title: 'Register'})
+    res.render('registration', {
+        title: 'Register',
+        page: "Registration",
+        pageTitle: "Registration",
+        user: req.user
+    })
 })
 
 routes.post('/registerstudent', (req, res) => {

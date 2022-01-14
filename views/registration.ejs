@@ -110,77 +110,19 @@
                             <div class="col-lg-9 col-sm-12"></div>
                             <div class="col-lg-3 col-sm-12 text-center">
                                
-                        <!-- Button trigger modal -->
-                            <button type="button" id="btnregister" class="btn btn-primary w-auto mt-3 px-5" data-bs-toggle="modal" data-bs-target="#reg">
-                                Register
+                                                           
+                            <button class="w-auto mt-3 px-5">
+                                <a href="reg" target="_blank">Register</a>
                             </button>
-  
-                         <!-- Modal -->
-                            <div class="modal fade " id="reg" tabindex="-1" aria-labelledby="regLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                            <h5 class="modal-title" id="regLabel">Confirmation</h5>
-                        
-                           
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                               
-                            </div>
-                            <div class="modal-body">
-                                <form>
-                                        <div class="text-start">
-                                            <div class=" mb-3">
-                                            <label for="course" class="col-form-label">Desired Course:</label>
-                                            <div class=" mb-3">
-                                            <label for="course" class="col-form-label ms-5" id=course-label></label> 
-                                            <div class="row"></div>                                          
-                                            <label for="name" class="col-form-label" id="name">Full Name:</label>
-                                            <div class="row"></div> 
-                                            <label for="fullname" class="col-form-label  ms-5" id=fullname></label>  
-                                            <div class="row"></div>
-                                            <label for="address" class="col-form-label" id="address">Address:</label>
-                                            <div class="row"></div>    
-                                            <label for="address" class="col-form-label  ms-5" id=fulladdress></label>
-                                            <div class="row"></div>
-                                            <label for="contact" class="col-form-label" id="address">Contact Details:</label>
-                                            <div class="row"></div>    
-                                            <label for="emailadd" class="col-form-label  ms-5" id=email></label>  
-                                            <div class="row"></div>    
-                                            <label for="mobilenumber" class="col-form-label  ms-5" id=mobile></label>    
-                                             
-                                        </div>
-                                    </div>    
-                                </div>   
-                                </form>
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button onclick="genPDF()" type="button" class="btn btn-primary">Download</button>
-                                <button type="button" class="btn btn-primary">Submit</button>                         
 
-                              </div>
+
+                            
+  
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div id="genpdf">
-        <table>
-            <thead>
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Test</td>
-                    <td>Test</td>
-                </tr>
-            </tbody>
-
-        </table>
     </div>
 </div>
 
@@ -1799,13 +1741,10 @@
         $('#mobile').html(mobile)
     });
 </script>
-<div id="element-container">
-    <p>This is page 1 content</p>
-    <p>This is page 2 content</p>
-</div>
+
 <script>
     function genPDF() {
-        var element = document.getElementById('element-container');
+        var element = document.getElementById('reg');
         var options = {
             jsPDF: {
                 format: 'a4'
@@ -1817,3 +1756,4 @@
         html2pdf(element, options);
     }
 </script>
+
