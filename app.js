@@ -38,6 +38,7 @@ const curriculumRoute = require('./routes/curriculum')
 const subjectsRoute = require('./routes/subjects')
 const enrollmentRoute = require('./routes/enrollment')
 const settingsRoute = require('./routes/settings')
+const enrollRoute = require('./routes/enroll')
 
 app.use(express.static('public'))
 app.use('/css', express.static(__dirname + 'public/css'))
@@ -73,6 +74,7 @@ app.use('/exam', examRoute)
 app.use('/dashboard', dashboardRoute)
 app.use('/login', loginRoute)
 app.use('/registration', registerRoute)
+app.use('/enroll', enrollRoute)
 
 
 //const testModule = require('./models/manageaccount/faculty')
