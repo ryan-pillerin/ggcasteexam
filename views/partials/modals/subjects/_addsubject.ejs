@@ -1,0 +1,61 @@
+<!-- Modal Forms -->
+<div class="modal fade" id="addsubjectsModal" tabindex="-1" aria-labelledby="addsubjectsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" id="addsubjectsModalLabel">Add Subject</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="coursenumber" placeholder="e.g. GE 1">
+                    <label for="coursenumber">Course No. <span style="color: red;">*</span></label>
+                    <span class="text-muted mx-1" style="font-size: 0.8rem;">
+                        e.g. GE 1, FIL 101, MATH 101, or EL 101
+                    </span>
+                    <div class="invalid-feedback mx-1">The course number is required. To learn more about the course number, kindly check out the school curriculum. </div>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="coursetitle" placeholder="e.g. Understanding the Self">
+                    <label for="coursetitle">Course Title <span style="color: red;">*</span></label></label>
+                    <span class="text-muted mx-1" style="font-size: 0.8rem;">
+                        e.g. Understanding the Self, Introduction sa Pag-aaral ng Wika, or College and Advance Algebra
+                    </span>                   
+                    <div class="invalid-feedback mx-1">The course title is required. To learn more about the course title, kindly check on the CHED's New Policies, Standards, and Guidelines or the School Curriculum.</div>
+                </div>
+                <div class="form-floating mb-3">
+                    <textarea style="height: 200px;" class="form-control" id="coursedescription" placeholder="Course Description" rows="3"></textarea>
+                    <label for="coursedecription">Course Description <span style="color: red;">*</span></label></label>
+                    <span class="text-muted mx-1" style="font-size: 0.8rem;">
+                        The course description can be found under the CHED New Policies, Standards, and Guidelines per Program or School Curriculum. 
+                    </span>
+                    <div class="invalid-feedback mx-1">The course description is required when adding the subject. To learn more about the description of the specific subject, refer to the CHED's New Policies, Standards, and Guidelines per Program or School Curriculum.</div>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="unitlec" placeholder="Number of Units" value="0" data-dic="lecunit">
+                    <label for="unitlecture">Lecture Units <span style="color: red;">*</span></label></label>                   
+                    <div class="invalid-feedback mx-1">There should be at least one (1) lecture or one (1) laboratory unit.</div>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="unitlab" placeholder="Number of Units" value="0" data-dic="labunit">
+                    <label for="unitlab">Laboratory Units <span style="color: red;">*</span></label></label>
+                    <div class="invalid-feedback mx-1">There should be at least one (1) lecture or one (1) laboratory unit.</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <span class="material-icons align-bottom">
+                        close
+                    </span>
+                    Close
+                </button>
+                <button type="button" class="btn btn-success" id="btnAddSubject">
+                    <span class="material-icons align-bottom">
+                        save
+                    </span>
+                    Save
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

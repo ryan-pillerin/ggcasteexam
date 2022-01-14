@@ -11,7 +11,7 @@ const dateFormat = require('date-and-time')
 const app = express()
 
 // Passport
-/*const initializePassport = require('./models/passport-config')
+const initializePassport = require('./models/passport-config')
 initializePassport(
     passport, 
     username => users.find(user => user.username === username),
@@ -21,7 +21,9 @@ initializePassport(
 let users = []
 facultyModel.getAllFacultyData().then( (results) => {
     users = results   
-})*/
+})
+
+console.log(users)
 
 // Routes
 const managedbRoute = require('./routes/database/managedb')
@@ -29,13 +31,18 @@ const examRoute = require('./routes/exam')
 const dashboardRoute = require('./routes/dashboard')
 const loginRoute = require('./routes/login')
 const registerRoute = require('./routes/registration')
-
+const regRoute = require('./routes/reg')
 const indexRoute = require('./routes/index')
 const manageAccountRoute = require('./routes/manageaccount')
 const curriculumRoute = require('./routes/curriculum')
 const subjectsRoute = require('./routes/subjects')
 const enrollmentRoute = require('./routes/enrollment')
+const corRoute=require('./routes/cor')
+
+// Unit Test
+const app = express()
 const settingsRoute = require('./routes/settings')
+const enrollRoute = require('./routes/enroll')
 
 app.use(express.static('public'))
 app.use('/css', express.static(__dirname + 'public/css'))
@@ -55,36 +62,38 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }))
-/*
+
 app.use(passport.initialize())
 app.use(passport.session())
-*/
+
 app.use('/', indexRoute)
 app.use('/settings', settingsRoute)
 app.use('/manageaccount', manageAccountRoute)
 app.use('/curriculum', curriculumRoute)
 app.use('/subjects', subjectsRoute)
 app.use('/enrollment', enrollmentRoute)
-
 app.use('/managedb', managedbRoute)
 app.use('/exam', examRoute)
 app.use('/dashboard', dashboardRoute)
 app.use('/login', loginRoute)
 app.use('/registration', registerRoute)
+app.use('/reg', regRoute)
+app.use('/cor', corRoute)
+app.use('/enroll', enrollRoute)
 
 
 //const testModule = require('./models/manageaccount/faculty')
-//const syncData = require('./models/syncfacultydata')
+const syncData = require('./models/syncfacultydata')
 
 // Cron Jeb Execution*/
-//let task = cron.schedule('0 */4 * * *', async () => {
-/*    let cronDate = dateFormat.format(new Date(), 'MM/DD/YYYY - hh:mm:ss A')
+let task = cron.schedule('0 */4 * * *', async () => {
+    let cronDate = dateFormat.format(new Date(), 'MM/DD/YYYY - hh:mm:ss A')
     console.log(cronDate + ": Updating the user's list for login...")
     facultyModel.getAllFacultyData().then( (results) => {
         users = results
         console.log(cronDate + ": User's list successfully updated!")   
     })
-});*/
+});
 
 app.listen(4000, async() => {
     console.log("----------------------------------------------")
@@ -97,6 +106,8 @@ app.listen(4000, async() => {
     */
     //syncData.syncDataFromSRMS()
     //console.log(testModule.getAllFacultyData())
-    //task.start()
-    //syncData.syncStudentDataFromSRMS()
+    //syncData.syncSubjectNewFromOldSRMS();
+
+    task.start()
+    
 })

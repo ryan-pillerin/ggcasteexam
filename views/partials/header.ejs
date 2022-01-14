@@ -1,5 +1,5 @@
-<% if ( page != 'login' && page != 'enrollment' ) { %>
-<nav class="navbar navbar-dark bg-success">
+<% if ( page != 'login' && page != 'reg' && page != 'COR' ) { %>
+<nav class="navbar navbar-dark bg-success donotinclude">
     <div class="container-fluid">
         <div class="navbar-brand">
             <a href="#mainmenu" class="btn text-white" data-bs-toggle="offcanvas" aria-controls="mainmenu">
@@ -11,7 +11,7 @@
         </div>
         <div class="btn-group">
             <button class="btn dropdown-toggle text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <img class="rounded-circle z-depth-2 mx-3" style="width: 40px;" alt="100x100" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg" data-holder-rendered="true">
+                <img class="rounded-circle z-depth-2 mx-3" style="width: 40px;" alt="100x100" src="https://ui-avatars.com/api/?name=<%= user.firstname %> <%= user.lastname %>&background=0D8ABC&color=fff" data-holder-rendered="true">
                 Hi <%= user.firstname %>
             </button>
             <ul class="dropdown-menu dropdown-menu-end text-center">
