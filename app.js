@@ -23,6 +23,8 @@ facultyModel.getAllFacultyData().then( (results) => {
     users = results   
 })
 
+console.log(users)
+
 // Routes
 const managedbRoute = require('./routes/database/managedb')
 const examRoute = require('./routes/exam')
@@ -74,7 +76,7 @@ app.use('/registration', registerRoute)
 
 
 //const testModule = require('./models/manageaccount/faculty')
-//const syncData = require('./models/syncfacultydata')
+const syncData = require('./models/syncfacultydata')
 
 // Cron Jeb Execution*/
 let task = cron.schedule('0 */4 * * *', async () => {
@@ -97,6 +99,8 @@ app.listen(3000, async() => {
     */
     //syncData.syncDataFromSRMS()
     //console.log(testModule.getAllFacultyData())
+    //syncData.syncSubjectNewFromOldSRMS();
+
     task.start()
-    //syncData.syncStudentDataFromSRMS()
+    
 })

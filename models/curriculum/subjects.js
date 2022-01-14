@@ -15,7 +15,7 @@ const addSubject = async (
     let lab = labunits
     let dateCreated = formatDate.format(new Date(), "YYYY-MM-DD hh:mm:ss")
 
-    let sql = "INSERT INTO subjects(id, code, subject, description, " +
+    let sql = "INSERT INTO courses(id, code, title, description, " +
               "unitslab, unitslec, status, createdby, updatedby, " +
               "createddate, updateddate) VALUES('" + id + "', '" + code + "', " +
               "'" + title + "', '" + description + "', '" + lab + "', '" + lec + "', " +
@@ -47,7 +47,7 @@ const editSubject = ({
 
 const getAllSubjects = async () => {
     
-    let sql = "SELECT * FROM subjects"
+    let sql = "SELECT * FROM courses"
     let promise = new Promise( (resolve) => {
         MYSqlDB.sqlCommand(sql).then( (rows) => {
             resolve(rows)
@@ -71,7 +71,7 @@ const changeSubjectStatus = ({
 const _checkSubjectCodeDuplicate = ({
     code, title, description
 }) => {
-    let sql = "SELECT id FROM subjects WHERE code = '" + code + "' AND title = '" + title + "' AND " +
+    let sql = "SELECT id FROM courses WHERE code = '" + code + "' AND title = '" + title + "' AND " +
               " description = '" + description + "' "
         
 }
