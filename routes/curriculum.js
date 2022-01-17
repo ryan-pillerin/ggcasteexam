@@ -2,6 +2,7 @@ const express = require('express')
 const routes = express.Router()
 const curriculaModel = require('./../models/curriculum/curricula')
 const subjectModel = require('./../models/curriculum/subjects')
+const moment = require('moment')
 
 routes.get('/', checkAuthenticated, async (req, res) => {
     /**
@@ -31,7 +32,28 @@ routes.get('/', checkAuthenticated, async (req, res) => {
         pageTitle: 'Curricula',
         user: req.user,
         programs: _programData,
-        subjects: _subjectData
+        subjects: _subjectData,
+        moment: moment
+    })
+})
+
+routes.post('/addprogram', checkAuthenticated, (req, res) => {
+    let code = req.body.code
+    let program = req.body.program
+    let major = req.body.major
+    let numberofyears = req.body.numberofyears
+    let effectivitydate = req.body.effectivitydate
+
+    //console.log(code, program, major, effectivitydate)
+    curriculaModel.addProgram(
+        code, 
+        program, 
+        major, 
+        numberofyears, 
+        effectivitydate, 
+        req.user.id).then((result) => {
+            console.log(result)
+            res.json(result)
     })
 })
 

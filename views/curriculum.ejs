@@ -1,10 +1,10 @@
 <div class="container-fluid">
     <div class="row mx-3 p-3" style="border-bottom: 1px solid #CCC">
         <div class="col-sm-12 col-md-10">
-            <h3 class="text-uppercase">Setup Curriculum</h3>
-            <p class="text-muted">
-                You only need to create a prospectus once, and it can be used to evaluate students during the enrollment process. 
-                Also, if a prospectus is no longer in use, you can deactivate it and replace it with a new one that will be used throughout the system.
+            <h3 class="text-uppercase">Curricula</h3>
+            <p class="text-muted" style="text-align: justify;">
+                In order to properly setup the curricula, the first thing you need to do is to create a program--to add a program click <a href="#addprogram" class="btn btn-success m-0 p-0 px-3"><span class="material-icons align-middle">add</span> Add Program</a> button at the upper-right corner of the window. Once you have successfully created the program, you can start managing the curriculum.
+                You need to click the <a href="#"><i class="material-icons align-bottom">library_books</i></a> to move into the manage page and start working on the curriculum for a specific program. Further instruction on managing the curriculum can be found under the manage page.
             </p>
         </div>
         <div class="col-sm-12 col-md-2 text-end">
@@ -12,55 +12,66 @@
                 <span class="material-icons align-bottom">
                 add
                 </span>
-            </a>
-            <a href="" class="btn btn-danger" style="border:1px solid #CCC"> 
-                <span class="material-icons align-bottom">
-                delete
-                </span>
+                Add Program
             </a>
         </div>
     </div>
     
     <div class="row m-3">
         <div class="col-12">
-            <input class="form-control" list="datalistOptions" id="programDataList" placeholder="Search Program...">
-            <datalist id="datalistOptions">
-                <% programs.forEach( (item, key) => { %>
-                    <option data-id="<%= item.id %>" value="<%= item.code %> - <%= item.program %> <%= item.major == '' ? '' : 'Major in ' + item.major %>"><%= item.program %> <%= item.major == '' ? '' : 'Major in ' + item.major %></option>
-                <% }) %>
-            </datalist>
-        </div>
-        <div class="col-sm-12 col-md-6">
-            <!-- <div class="card">
-                <div class="card-header">
-                  <h5>Bachelor in Elementary Education - Generalist</h5>
-                  <span style="font-size:0.8rem;">BEED - GENERALIST</span>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">Summary</h5>
-                  <p class="card-text"></p>
-                </div>
-                <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div> -->
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead class="text-white bg-success" style="min-width: 768px;">
+                        <tr>
+                            <th width="50%">Program</th>
+                            <th width="30%" class="text-center">Effectivity Date</th>
+                            <th width="20%" class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-hover">
+                        <% programs.forEach( (item, key) => { %>
+                        <tr>
+                            <td>
+                                <h6><%= item.program %> <%= item.major == '' ? '' : 'Major in ' + item.major %></h6>
+                                <p class="text-muted" style="font-size: 0.8rem;">
+                                    <%= item.code %>
+                                </p>
+                            </td>
+                            <td class="text-center">
+                                <%= moment(item.effectivitydate).format('MM/DD/YYYY') %>
+                            </td>
+                            <td class="align-middle text-center">
+                                <% if (item.status == 0 ) { %>
+                                <a href="#activedeactivate" 
+                                    class="btn btn-warning btnactivatedeactivate"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="The Program is currently Deactivated."
+                                    >
+                                    <i class="material-icons align-middle iconToggle">toggle_off</i>
+                                </a>
+                                <% } else { %>
+                                <a href="#activedeactivate" 
+                                    class="btn btn-success btnactivatedeactivate"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="The Program is currently Activated."
+                                    >
+                                    <i class="material-icons align-middle iconToggle">toggle_on</i>
+                                </a>
+                                <% } %>
+                                <a href="#managecurriculum" class="btn btn-primary">
+                                    <i class="material-icons align-middle">library_books</i>
+                                </a>
+                                <a href="#delete" class="btn btn-danger">
+                                    <i class="material-icons align-middle">delete</i>
+                                </a>
+                            </td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
 
 <%- include('partials/modals/curricula/_addcurriculummodal.ejs') %>
 
-<!-- <div class="container shadow min-vh-100 py-2">
-    <h5>Bootstrap 5 date picker</h5>
-    <div class="row justify-content-center">
-        <div class="col-lg-3 col-sm-6">
-            <label for="startDate">Start</label>
-            <input id="startDate" class="form-control" type="date" />
-        </div>
-        <div class="col-lg-3 col-sm-6">
-            <label for="endDate">End</label>
-            <input id="endDate" class="form-control" type="date" />
-            <span id="endDateSelected"></span>
-        </div>
-    </div>
-</div> -->
+<script type="module" src="/js/models/curricula/main.js"></script>

@@ -2,89 +2,6 @@ const MYSqlDB = require('./../database/mysqldb')
 const {v1: guid}  = require('uuid')
 const formatDate = require('date-and-time')
 
-const addCurriculum = async (
-    programid,
-    yearlevel,
-    curriculumDetails
-) => {
-    let _sql = null
-    let currentMonth = formatDate.format(new Date(), 'MM')
-    let semester = 0
-
-    let _promise = new Promise( (resolve, reject) => {
-        // Check if the current date belongs to a certain semester
-        if ( currentMonth >= 1 && currentMonth < 6 ) {
-            semester = '2nd Semester'
-        } else if ( currentMonth >= 6 && currentMonth <= 7 ) {
-            semester = 'Summer'
-        } else {
-            semester = '1st Semester'
-        }
-
-    })
-
-    /*let _curriculumDetails = {
-        id: guid(),
-        programid: programid,
-        semester: semester,
-        yearlevel: yearlevel,
-        effectivitydate: formatDate.format(new Date(), 'YYYY-MM-DD hh:mm:ss'),
-        status: 1,
-        createdby: '6b2572f6-6243-11ec-a1e9-1793120ac5d7',
-        updatedby: '6b2572f6-6243-11ec-a1e9-1793120ac5d7',
-        createddate: formatDate.format(new Date(), 'YYYY-MM-DD hh:mm:ss'),
-        updateddate: formatDate.format(new Date(), 'YYYY-MM-DD hh:mm:ss'),
-        curriculumDetails: [
-            {
-                id: guid(),
-                courseid: '0413cdb6-7521-11ec-9819-83a9d413af23',
-                prerequisiteid: '041665c2-7521-11ec-9819-83a9d413af23'
-            },
-            {
-                id: guid(),
-                courseid: '0413cdb5-7521-11ec-9819-83a9d413af23',
-                prerequisiteid: '041665c2-7521-11ec-9819-83a9d413af23'
-            },
-            {
-                id: guid(),
-                courseid: '0415f08b-7521-11ec-9819-83a9d413af23',
-                prerequisiteid: ''
-            },
-            {
-                id: guid(),
-                courseid: '0413cdb0-7521-11ec-9819-83a9d413af23',
-                prerequisiteid: ''
-            },
-            {
-                id: guid(),
-                courseid: '0413f4bc-7521-11ec-9819-83a9d413af23',
-                prerequisiteid: ''
-            },
-            {
-                id: guid(),
-                courseid: '041442dd-7521-11ec-9819-83a9d413af23',
-                prerequisiteid: ''
-            },
-            {
-                id: guid(),
-                courseid: '041665b0-7521-11ec-9819-83a9d413af23',
-                prerequisiteid: ''
-            },
-            {
-                id: guid(),
-                courseid: '04102427-7521-11ec-9819-83a9d413af23',
-                prerequisiteid: ''
-            },
-            {
-                id: guid(),
-                courseid: '04161790-7521-11ec-9819-83a9d413af23',
-                prerequisiteid: ''
-            }
-        ]
-    }*/
-
-}
-
 const autoAddAcademicYearandSemester = async () => {
 
     /**
@@ -150,8 +67,44 @@ const getAllPrograms = async () => {
 
 }
 
+/**
+ * Program Management
+ */
+const addProgram = async (code, program, major, numberofyears, effectivitydate, userid ) => {
+    /**
+     * Check if the code, program, major, and effectivity date already exists
+     */
+    
+    let _sql = `SELECT id FROM programs WHERE code = '${code}' AND program = '${program}'
+        AND major = '${major}' AND effectivitydate >= '${effectivitydate} AND status = 0'`
+    let _promise = new Promise( (resolve, reject) => {
+        try {
+            MYSqlDB.sqlCommand(_sql).then( (rows) => {
+                if ( rows.length == 0 ) {
+                    // Add the new program in the database
+                    let id = guid()
+                    let saveDate = formatDate.format(new Date(), 'YYYY-MM-DD hh:mm:ss')
+                    _sql = `INSERT INTO programs(id, code, program, major, effectivitydate, status, createdby,
+                        createddate, updatedby, updateddate) VALUES('${id}', '${code}', '${program}', 
+                        '${major}', '${effectivitydate}', 0, '${userid}', '${saveDate}', '${userid}', '${saveDate}')`
+                    MYSqlDB.sqlCommand(_sql).then( (rows) => {
+                        resolve(rows)
+                    })
+                } else {
+                    // Return an error massage saying that the program already exists
+                    resolve(rows)
+                }
+            })
+        } catch (err) {
+            reject(err)
+        }
+    })
+
+    return await _promise
+}
+
 module.exports = {
-    addCurriculum,
     autoAddAcademicYearandSemester,
-    getAllPrograms
+    getAllPrograms,
+    addProgram
 }

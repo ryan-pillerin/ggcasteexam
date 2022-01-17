@@ -4,29 +4,26 @@ export default class Curricula {
         this.curriculum = []
     }
 
-    addCurriculum = (programId, semester, yearLevel, effectivityDate) => {
-        
-        this.curriculum.push({
-            programId: programId,
-            semester: semester,
-            yearLevel: yearLevel,
-            effectivityDate: effectivityDate,
-            curriculumDetails: []
-        })
-
-    }
-
-    addCurriculumDetails = (courseId, prerequisiteId) => {
-        this.curriculum.curriculumDetails.push({
-            courseId: courseId,
-            prerequisiteId: prerequisiteId
-        })
-    }
-
-    saveCurriculum = () => {
+    saveCurriculum = (code, program, major, numberofyears, effectivitydate) => {
         /**
          * Save the Curriculum in the database  
          */
+        axios({
+            method: 'POST',
+            url: '/curriculum/addprogram',
+            data: {
+                code: code,
+                program: program,
+                major: major,
+                numberofyears: numberofyears,
+                effectivitydate: effectivitydate
+            }
+        }).then( (response) => {
+            console.log(response)
+            if (response.statusText == 'OK' && response.status == 200) {
+                console.log(response.data)
+            }
+        })
         
     }
 

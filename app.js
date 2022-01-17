@@ -6,6 +6,7 @@ const session = require('express-session')
 const facultyModel = require('./models/manageaccount/faculty')
 const cron = require('node-cron')
 const dateFormat = require('date-and-time')
+
 //const syncData = require('./models/syncfacultydata')
 
 const app = express()
@@ -38,7 +39,6 @@ const enrollmentRoute = require('./routes/enrollment')
 const corRoute=require('./routes/cor')
 
 // Unit Test
-const app = express()
 const settingsRoute = require('./routes/settings')
 const enrollRoute = require('./routes/enroll')
 
@@ -95,9 +95,10 @@ let task = cron.schedule('0 */4 * * *', async () => {
     curriculaModel.autoAddAcademicYearandSemester()
 });
 
-app.listen(4000, async() => {
+app.listen(process.env.SERVER_PORT, process.env.SERVER_HOST, async() => {
     console.log("----------------------------------------------")
     console.log("GGCAST Electronic Exam Server is running!")
+    console.log(`${process.env.SERVER_HOST}:${process.env.SERVER_PORT}`)
     console.log("----------------------------------------------")
     /*
     console.log(encryption.encrypt('admin'))
@@ -108,7 +109,6 @@ app.listen(4000, async() => {
     //console.log(testModule.getAllFacultyData())
     //syncData.syncSubjectNewFromOldSRMS();
     curriculaModel.autoAddAcademicYearandSemester()
-    curriculaModel.addCurriculum('e4870de1-66f7-11ec-83a3-d45d6439670d', 1)
     task.start()
     
 })
