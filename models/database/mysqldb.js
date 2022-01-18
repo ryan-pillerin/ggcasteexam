@@ -1,11 +1,12 @@
 const e = require('express');
 const MySQL = require('mysql');
+require('dotenv').config()
 
 let config = {
-    host: '192.168.2.14',
-    user: 'root',
-    password: 'moth34board',
-    database: 'ggcastlms'
+    host: process.env.HOST,
+    user: process.env.DB_USERNAME,
+    password: process.env.PASS,
+    database: process.env.DB
 }
 
 let _conn = null
