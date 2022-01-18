@@ -8,7 +8,7 @@ const cron = require('node-cron')
 const dateFormat = require('date-and-time')
 //const syncData = require('./models/syncfacultydata')
 
-const app = express()
+
 
 // Passport
 const initializePassport = require('./models/passport-config')
@@ -38,6 +38,7 @@ const curriculumRoute = require('./routes/curriculum')
 const subjectsRoute = require('./routes/subjects')
 const enrollmentRoute = require('./routes/enrollment')
 const corRoute=require('./routes/cor')
+const teachingloadRoute=require('./routes/teachingload')
 
 // Unit Test
 const app = express()
@@ -80,6 +81,7 @@ app.use('/registration', registerRoute)
 app.use('/reg', regRoute)
 app.use('/cor', corRoute)
 app.use('/enroll', enrollRoute)
+app.use('/teachingload', teachingloadRoute)
 
 
 //const testModule = require('./models/manageaccount/faculty')
