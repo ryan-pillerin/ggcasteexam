@@ -4,7 +4,7 @@ require('dotenv').config()
 
 let config = {
     host: process.env.HOST,
-    user: process.env.USER,
+    user: process.env.DB_USERNAME,
     password: process.env.PASS,
     database: process.env.DB
 }

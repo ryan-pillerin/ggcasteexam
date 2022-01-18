@@ -70,13 +70,13 @@ const getAllPrograms = async () => {
 /**
  * Program Management
  */
-const addProgram = async (code, program, major, numberofyears, effectivitydate, userid ) => {
+const addProgram = async (code, program, major, numberofyears, userid ) => {
     /**
      * Check if the code, program, major, and effectivity date already exists
      */
     
     let _sql = `SELECT id FROM programs WHERE code = '${code}' AND program = '${program}'
-        AND major = '${major}' AND effectivitydate >= '${effectivitydate} AND status = 0'`
+        AND major = '${major}'`
     let _promise = new Promise( (resolve, reject) => {
         try {
             MYSqlDB.sqlCommand(_sql).then( (rows) => {
@@ -84,9 +84,9 @@ const addProgram = async (code, program, major, numberofyears, effectivitydate, 
                     // Add the new program in the database
                     let id = guid()
                     let saveDate = formatDate.format(new Date(), 'YYYY-MM-DD hh:mm:ss')
-                    _sql = `INSERT INTO programs(id, code, program, major, effectivitydate, status, createdby,
+                    _sql = `INSERT INTO programs(id, code, program, major, numberofyears, createdby,
                         createddate, updatedby, updateddate) VALUES('${id}', '${code}', '${program}', 
-                        '${major}', '${effectivitydate}', 0, '${userid}', '${saveDate}', '${userid}', '${saveDate}')`
+                        '${major}', ${numberofyears}, '${userid}', '${saveDate}', '${userid}', '${saveDate}')`
                     MYSqlDB.sqlCommand(_sql).then( (rows) => {
                         resolve(rows)
                     })

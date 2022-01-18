@@ -36,12 +36,12 @@ $(document).ready( function() {
             $(this).removeClass('btn-warning')
             $(this).addClass('btn-success')
             $(this).attr('title', 'The Program is currently Activated.')
-            $(this).next('.iconToggle').html('toggle_on')
+            $(this).find('i').html('toggle_on')
         } else {
             $(this).removeClass('btn-success')
             $(this).addClass('btn-warning')
             $(this).attr('title', 'The Program is currently Deactivated.')
-            $(this).next('.iconToggle').html('toggle_off')
+            $(this).find('i').html('toggle_off')
         }
 
     })

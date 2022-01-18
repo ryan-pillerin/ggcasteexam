@@ -50,7 +50,6 @@ routes.post('/addprogram', checkAuthenticated, (req, res) => {
         program, 
         major, 
         numberofyears, 
-        effectivitydate, 
         req.user.id).then((result) => {
             console.log(result)
             res.json(result)
