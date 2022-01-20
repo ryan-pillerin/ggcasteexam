@@ -2,7 +2,7 @@
     #printContainer {
         margin: 0;
         padding: 0;
-        padding-left: 2rem;
+        padding-left: 1rem;
         padding-right: 2rem;
         padding-top: 2rem;
         width: 794px !important;
@@ -10,8 +10,8 @@
         overflow: hidden !important;
     }
     #printContainer .img-fluid {
-        width: 100% !important;
-        height: 120px !important;
+        width: 90% !important;
+        height: 110px !important;
     } 
     
     #printContainer .print-header-text {
@@ -40,6 +40,9 @@
         
         font-size: 0.8rem !important;
        
+    }
+    #printContainer .donotinclude {
+        visibility: hidden;
     }
     
 }

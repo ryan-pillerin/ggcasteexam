@@ -6,12 +6,14 @@ const dateFormat = require('date-and-time')
 
 
 routes.get('/', (req, res) => {
-    res.render('cor', {
-        title: 'Certificate of Registration',
-        page: "COR",
-        pageTitle: "Certificate of Registration",
+    res.render('teachingload', {
+        title: 'Teaching Load',
+        page: "teachingload",
+        pageTitle: "Teaching Load",
         user: req.user
     })
 })
+
+
 
 module.exports = routes

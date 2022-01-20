@@ -1,12 +1,23 @@
 const express = require('express')
 const routes = express.Router()
+const enroll = require('./../models/enrollment')
 
-routes.get('/', checkAuthenticated, (req, res) => {
+routes.get('/', checkAuthenticated, async (req, res) => {
+
+    let _promise = new Promise( (resolve, reject) => {
+        enroll.getAllStudents().then( (rows) => {
+            resolve(rows)
+        })
+    })
+
+    let _studentsData = await _promise
+
     res.render('enroll', {
-        title: 'Course Form', 
-        page: 'courseform',
-        pageTitle: 'Course Form',
-        user: req.user
+        title: 'Enrollment', 
+        page: 'enrollment',
+        pageTitle: 'Enrollment',
+        user: req.user,
+        students: _studentsData
     })
 })
 

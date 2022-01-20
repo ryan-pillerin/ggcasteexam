@@ -1,0 +1,27 @@
+<div class="container-fluid">
+    <div class="row mx-3 p-3" style="border-bottom: 1px solid #CCC">
+        <div class="col-sm-12 col-md-10">
+            <h3 class="text-uppercase">Enrollment</h3>
+            <p class="text-muted">
+                You only need to create a prospectus once, and it can be used to evaluate students during the enrollment process. 
+                Also, if a prospectus is no longer in use, you can deactivate it and replace it with a new one that will be used throughout the system.
+            </p>
+        </div>
+    </div>
+    
+    <div class="row m-3">
+        <div class="col-12">
+            <input class="form-control" list="datalistOptions" id="searchStudents" placeholder="Type to search...">
+            <datalist id="datalistOptions">
+                <% students.forEach( (item, key) => { %>
+                    <option data-id="<%= item.id %>" value="<%= item.code %> - <%= item.firstname %> <%= item.middlename %> <%= item.lastname %>"><%= item.code %> - <%= item.firstname %> <%= item.middlename %> <%= item.lastname %></option>
+                <% }) %>
+            </datalist>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 mt-5">
+            <%- include('partials/enrollment/enrollmentdetails.ejs') %>
+        </div>
+    </div>
+</div>
+
+<script type="module" src="/js/models/enrollment/main.js"></script>

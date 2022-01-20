@@ -15,6 +15,20 @@ const searchStudents = async ( searchtext ) => {
     return await _promise
 }
 
+const getAllStudents = async () => {
+    let _sql = "SELECT code, firstname, lastname, middlename FROM students " +
+              "ORDER BY lastname, firstname, middlename ASC"
+              
+    let _promise = new Promise( (resolve) => {
+        mysqlCmd.sqlCommand(_sql).then( (rows) => {
+            resolve(rows)
+        })
+    })
+
+    return await _promise
+}
+
 module.exports = {
-    searchStudents
+    searchStudents,
+    getAllStudents
 }
