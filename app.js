@@ -23,8 +23,6 @@ facultyModel.getAllFacultyData().then( (results) => {
     users = results   
 })
 
-console.log(users)
-
 // Routes
 const managedbRoute = require('./routes/database/managedb')
 const examRoute = require('./routes/exam')
@@ -40,7 +38,6 @@ const enrollmentRoute = require('./routes/enrollment')
 const corRoute=require('./routes/cor')
 
 // Unit Test
-const app = express()
 const settingsRoute = require('./routes/settings')
 const enrollRoute = require('./routes/enroll')
 
