@@ -1,0 +1,30 @@
+<div class="modal fade" id="createCurriculum" tabindex="-1" aria-labelledby="createCurriculumLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createCurriculumLabel">Create Curriculum</h5>
+                <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                    <span class="material-icons">close</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-floating mb-3">
+                    <select class="form-select" aria-label="Select Program" id="program">
+                        <% programs.forEach( (item, index) => { %>
+                            <option value="<%= item.id %>"><%= item.major == '' ? item.program : item.program + ' Major in ' + item.major %></option>
+                        <% }) %>
+                    </select>
+                    <label for="program">Program <span class="text-danger">*</span></label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="date" class="form-control" id="effectivitydate">
+                    <label for="effectivitydate">Effectivity Date <span class="text-danger">*</span></label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btnCreateCurriculum">Create</button>
+            </div>
+        </div>
+    </div>
+</div>

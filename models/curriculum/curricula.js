@@ -103,6 +103,16 @@ const addProgram = async (code, program, major, numberofyears, userid ) => {
     return await _promise
 }
 
+const setupCurriculum = (programid) => {
+
+    let curriculum = {
+        programid: '',
+        effectivitydate: ''
+    }
+
+    return curriculum
+}
+
 module.exports = {
     autoAddAcademicYearandSemester,
     getAllPrograms,
