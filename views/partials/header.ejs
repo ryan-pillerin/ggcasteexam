@@ -1,4 +1,4 @@
-<% if ( page != 'login' && page != 'reg' && page != 'COR' ) { %>
+<% if ( page != 'login' && page != 'reg' && page != 'COR'  && page != 'teachingload' ) { %>
 <nav class="navbar navbar-dark bg-success donotinclude">
     <div class="container-fluid">
         <div class="navbar-brand">
@@ -38,10 +38,21 @@
         <div class="container-fluid">
             <ul class="list-group list-group-flush">
                 <a href="/" class="list-group-item list-group-item-action">Dashboard</a>
-                <a href="#settingMenu" data-bs-toggle="collapse" aria-expanded="false" aria-controls="settingMenu" class="list-group-item list-group-item-action">Settings</a>
-                    <ul class="list-group list-group-flush collapse px-3" id="settingMenu">
-                        <a href="/subjects" class="list-group-item list-group-item-action">Subjects</a>
-                        <a href="/curriculum" class="list-group-item list-group-item-action">Curriculum</a>
+                <a href="#students" data-bs-toggle="collapse" aria-expanded="false" aria-controls="students" class="list-group-item list-group-item-action">Students</a>
+                <ul class="list-group list-group-flush collapse" id="students">
+                    <a href="#profile" style="padding-left: 30px;" class="list-group-item list-group-item-action">Profile</a>
+                    <a href="/enroll" style="padding-left: 30px;" class="list-group-item list-group-item-action">Enrollment</a>                    
+                </ul>
+                <a href="#faculty" data-bs-toggle="collapse" aria-expanded="false" aria-controls="faculty" class="list-group-item list-group-item-action">Faculty</a>
+                <ul class="list-group list-group-flush collapse" id="faculty">
+                    <a href="#FacultyLoad" style="padding-left: 30px;" class="list-group-item list-group-item-action">Faculty Load</a>
+                    <a href="#GradeEntry" style="padding-left: 30px;" class="list-group-item list-group-item-action">Grade Entry</a>
+                </ul>
+                <!-- Only Applicable in all Program Head and Registrar but the registrar will be limited to printing of Curriculum -->
+                <a href="#curricula" data-bs-toggle="collapse" aria-expanded="false" aria-controls="curricula" class="list-group-item list-group-item-action">Curricula</a>
+                    <ul class="list-group list-group-flush collapse" id="curricula">
+                        <a href="/subjects" style="padding-left: 30px;" class="list-group-item list-group-item-action">Subjects</a>
+                        <a href="/curriculum" style="padding-left: 30px;" class="list-group-item list-group-item-action">Curriculum</a>
                     </ul>
             </ul>
         </div>

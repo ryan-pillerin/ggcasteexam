@@ -6,9 +6,10 @@ const session = require('express-session')
 const facultyModel = require('./models/manageaccount/faculty')
 const cron = require('node-cron')
 const dateFormat = require('date-and-time')
+
 //const syncData = require('./models/syncfacultydata')
 
-const app = express()
+
 
 // Passport
 const initializePassport = require('./models/passport-config')
@@ -36,6 +37,7 @@ const curriculumRoute = require('./routes/curriculum')
 const subjectsRoute = require('./routes/subjects')
 const enrollmentRoute = require('./routes/enrollment')
 const corRoute=require('./routes/cor')
+const teachingloadRoute=require('./routes/teachingload')
 
 // Unit Test
 const settingsRoute = require('./routes/settings')
@@ -77,10 +79,12 @@ app.use('/registration', registerRoute)
 app.use('/reg', regRoute)
 app.use('/cor', corRoute)
 app.use('/enroll', enrollRoute)
+app.use('/teachingload', teachingloadRoute)
 
 
 //const testModule = require('./models/manageaccount/faculty')
 const syncData = require('./models/syncfacultydata')
+const curriculaModel = require('./models/curriculum/curricula')
 
 // Cron Jeb Execution*/
 let task = cron.schedule('0 */4 * * *', async () => {
@@ -90,11 +94,13 @@ let task = cron.schedule('0 */4 * * *', async () => {
         users = results
         console.log(cronDate + ": User's list successfully updated!")   
     })
+    curriculaModel.autoAddAcademicYearandSemester()
 });
 
-app.listen(4000, async() => {
+app.listen(process.env.SERVER_PORT, process.env.SERVER_HOST, async() => {
     console.log("----------------------------------------------")
     console.log("GGCAST Electronic Exam Server is running!")
+    console.log(`${process.env.SERVER_HOST}:${process.env.SERVER_PORT}`)
     console.log("----------------------------------------------")
     /*
     console.log(encryption.encrypt('admin'))
@@ -104,7 +110,7 @@ app.listen(4000, async() => {
     //syncData.syncDataFromSRMS()
     //console.log(testModule.getAllFacultyData())
     //syncData.syncSubjectNewFromOldSRMS();
-
+    curriculaModel.autoAddAcademicYearandSemester()
     task.start()
     
 })

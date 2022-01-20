@@ -2,6 +2,7 @@ const MySQL = require('mysql');
 const {v1: guid} = require('uuid')
 const dateFormat = require('date-and-time')
 const { addSlashes, stripSlashes } = require('slashes');
+require('dotenv').config()
 
 let config_srms = {
     host: '192.168.2.14',

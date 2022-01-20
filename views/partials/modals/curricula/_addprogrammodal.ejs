@@ -1,0 +1,51 @@
+<div class="modal fade" tabindex="-1" id="addCurriculumModal">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header text-white" style="background-color: #0367A6;">
+                <h5 class="modal-title">Add Program</h5>
+                <button type="button" class="btn" data-bs-dismiss="modal">
+                    <span class="material-icons text-white">close</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="programCode">
+                    <label for="programCode">Program Code <span class="text-danger">*</span></label>
+                    <div class="text-muted mx-3" style="font-size: 0.8rem;">
+                        e.g. BSED-Math, BSED-English, BSED-Filipino
+                    </div>
+                </div>
+                <div class="form-floating mt-3">
+                    <input type="text" class="form-control" id="programTitle">
+                    <label for="programTitle">Program Title <span class="text-danger">*</span></label>
+                    <div class="text-muted mx-3" style="font-size: 0.8rem;">
+                        e.g. Bachelor of Secondary Education, Bachelor of Elementary Education
+                    </div>
+                </div>
+                <div class="form-floating mt-3">
+                    <input type="text" class="form-control" id="programMajor">
+                    <label for="programMajor">Major</label>
+                    <div class="text-muted mx-3" style="font-size: 0.8rem;">
+                        Only add major if needed on certain program (e.g. English, Mathematics, Filipino)
+                    </div>
+                </div>
+                <div class="form-floating mt-3">
+                    <input type="number" class="form-control" id="yearstofinish" value="4">
+                    <label for="yearstofinish">Number of Years to Finish <span class="text-danger">*</span></label>
+                    <div class="text-muted mx-3" style="font-size: 0.8rem;">
+                        Only add major if needed on certain program (e.g. English, Mathematics, Filipino)
+                    </div>
+                </div>
+                <div class="form-floating mt-3">
+                    <label for="effectivityDate">Effectivity Date <span class="text-danger">*</span></label>
+                    <input id="effectivityDate" class="form-control" type="date" value="" style="height: 90px;" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="addCurriculum">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
